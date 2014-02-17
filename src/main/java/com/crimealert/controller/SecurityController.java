@@ -28,6 +28,12 @@ public class SecurityController {
 		return new ModelAndView("login");
 	}
 
+	@RequestMapping(value="/register", method=RequestMethod.GET)
+	public ModelAndView register() {
+		log.debug("inside register");
+		return new ModelAndView("register");
+	}
+	
 	@RequestMapping(value="/accessdenied", method=RequestMethod.GET)
 	public ModelAndView accessdenied() {
 		log.debug("inside accessdenied");
