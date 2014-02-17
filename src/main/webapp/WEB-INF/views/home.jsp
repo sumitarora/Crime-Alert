@@ -4,8 +4,7 @@
 	<div class="col-sm-3">
 		<ul class="nav nav-pills nav-stacked">
 		  <li class="active"><a href="#">Complaints</a></li>
-		  <li><a href="#">Crimes</a></li>
-		  <li><a href="#">--</a></li>
+		  <li><a href="#">Crimes</a></li>		  
 		</ul>
 	</div>
 	<div class="col-sm-9">
