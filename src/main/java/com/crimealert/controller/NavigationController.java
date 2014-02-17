@@ -17,11 +17,11 @@ public class NavigationController {
 	@RequestMapping(value={"/", "index"}, method=RequestMethod.GET)
 	public ModelAndView index() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		log.debug(auth.toString());
+		log.debug(auth.getPrincipal().toString());
 		if(auth.getPrincipal().toString().equals("anonymousUser")) {
-			return new ModelAndView(new RedirectView("/home", true));
-		} else {
 			return new ModelAndView("index");
+		} else {
+			return new ModelAndView(new RedirectView("/home", true));
 		}		
 	}
 
