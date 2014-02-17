@@ -1,14 +1,6 @@
 <%@ include file="common/header.jsp"%>
 
-<div class="jumbotron">
-   <h1>Crime Alert</h1>
-   <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-   <p>
-     <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-   </p>
- </div>
-
-<!-- <div class="container">
+<div class="container">
 	<div class="col-sm-3">
 		<ul class="nav nav-pills nav-stacked">
 		  <li class="active"><a href="#">Complaints</a></li>
@@ -37,6 +29,6 @@
 	    </div>     
 	    <hr>
 	</div>
-</div> -->
+</div>
 
 <%@ include file="common/footer.jsp"%>

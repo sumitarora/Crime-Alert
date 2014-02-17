@@ -4,7 +4,7 @@
 <div class="container">
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
+		<form action="${loginUrl}" method="post" role="form">
 			<h2>Please Sign In <small></small></h2>
 		    <c:if test="${param.error != null}">        
 		        <p>
