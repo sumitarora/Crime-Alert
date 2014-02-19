@@ -25,6 +25,7 @@ public class TestShopService extends BaseTestCase {
 	public void testShopCreate() {
 		log.debug("testing create shop");
 		final Shop s = shopService.create(ddg.createShop());
+		assertNotNull(s.getId());
 		assertTrue(s.getId() > 0);
 		
 		final List<Shop> shops = shopService.findAll();
