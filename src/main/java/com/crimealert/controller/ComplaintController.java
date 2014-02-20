@@ -18,5 +18,11 @@ public class ComplaintController {
 		return mv;
 		
 	}
+
+	@RequestMapping(value= "/list", method=RequestMethod.GET )
+	public ModelAndView listComplaints(){
+		ModelAndView mav = new ModelAndView("hello");
+		return mav;
+	}
 }
 
