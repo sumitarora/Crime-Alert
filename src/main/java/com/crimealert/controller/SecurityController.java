@@ -76,5 +76,11 @@ public class SecurityController {
 		//userService.insertUser("sumit", "123456");
 		return "";
     }
+    
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ModelAndView updateProfile() {
+		log.debug("creating user");
+		return new ModelAndView("profile");
+    }
 	
 }
