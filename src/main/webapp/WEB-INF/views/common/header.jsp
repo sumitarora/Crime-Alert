@@ -14,10 +14,10 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 	<title>Crime-Alert Web Application</title>
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/css/yeti.css">
-	<link rel="stylesheet" href="resources/css/app.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yeti.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 </head>
 <body>
 
