@@ -1,5 +1,8 @@
 <%@ include file="../common/header.jsp"%>
 
+<div class="container">
+<%@ include file="../common/left-menu.jsp"%>
+<div class="col-sm-9">
 <form class="form-horizontal" role="form">
   <div class="form-group">
     <h1>Add Crime</h1>
@@ -308,6 +311,7 @@
     </div>
   </div>
 </form>
-
+</div>
+</div>
 
 <%@ include file="../common/footer.jsp"%>
