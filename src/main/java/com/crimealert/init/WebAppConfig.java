@@ -41,6 +41,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	public WebAppConfig() {
 		log.debug("creating spring web app configuration");
+		log.debug("active profile: {}", System.getProperty("spring.profiles.active"));
 	}
 
   @Bean
@@ -49,8 +50,13 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     applicationProperties.setIgnoreResourceNotFound(true);
     applicationProperties.setIgnoreUnresolvablePlaceholders(true);
 
-    log.debug("Loading application.properties.");
-    applicationProperties.setLocation(new ClassPathResource("application.properties"));
+    log.debug("Loading properties: {}", System.getProperty("spring.profiles.active"));
+    if(System.getProperty("spring.profiles.active").contains("test")) {
+    	applicationProperties.setLocation(new ClassPathResource("test.properties"));
+    } else {
+    	applicationProperties.setLocation(new ClassPathResource("application.properties"));
+    }
+    
 
     return applicationProperties;
   }

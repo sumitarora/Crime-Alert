@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
@@ -35,9 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	 auth
          .jdbcAuthentication()
          	 .dataSource(dataSource)
-         	 .usersByUsernameQuery("select username, password, true from tbl_user where username=?")
-         	 .authoritiesByUsernameQuery("select username as username, role from tbl_user where username = ?");
+         	 .usersByUsernameQuery("select email, password, true from tbl_user where email=?")
+         	 .authoritiesByUsernameQuery("select email as username, role from tbl_user where email = ?");
     	
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+      web
+        .ignoring()
+           .antMatchers("/resources/**"); // #3
     }
     
     @Override
@@ -49,6 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	.csrf().disable()
         	.authorizeRequests()
         		.antMatchers("/crime/**").permitAll()
+        		.antMatchers("/complaint/**").permitAll()
+        		.antMatchers("/").permitAll()
+        		.antMatchers("/register").permitAll()
+        		.antMatchers("/registeruser").permitAll()
             	.antMatchers("/shop/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
