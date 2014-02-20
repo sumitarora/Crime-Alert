@@ -1,101 +1,83 @@
 <%@ include file="common/header.jsp"%>
 
-<div class="page-header">
-        <h1><spring:message code="label.user.registration.page.title"/></h1>
-    </div>
-    <!--
-        If the user is anonymous (not logged in), show the registration form.
-    -->
-    <sec:authorize access="isAnonymous()">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <!-- 
-                    Ensure that when the form is submitted, a POST request is send to url
-                    '/user/register'.
-                -->
-                <form:form action="/user/register" commandName="user" method="POST" enctype="utf8" role="form">
-                    <!-- Add CSRF token to the request. -->
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <!--
-                        If the user is using social sign in, add the signInProvider
-                        as a hidden field.
-                    -->
-                    <c:if test="${user.signInProvider != null}">
-                        <form:hidden path="signInProvider"/>
-                    </c:if>
-                    <div class="row">
-                        <div id="form-group-firstName" class="form-group col-lg-4">
-                            <label class="control-label" for="user-firstName"><spring:message code="label.user.firstName"/>:</label>
-                            <!--
-                                Add the firstName field to the form and ensure 
-                                that validation errors are shown.
-                            -->
-                            <form:input id="user-firstName" path="firstName" cssClass="form-control"/>
-                            <form:errors id="error-firstName" path="firstName" cssClass="help-block"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="form-group-lastName" class="form-group col-lg-4">
-                            <label class="control-label" for="user-lastName"><spring:message code="label.user.lastName"/>:</label>
-                            <!--
-                                Add the lastName field to the form and ensure
-                                that validation errors are shown.
-                            -->
-                            <form:input id="user-lastName" path="lastName" cssClass="form-control"/>
-                            <form:errors id="error-lastName" path="lastName" cssClass="help-block"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="form-group-email" class="form-group col-lg-4">
-                            <label class="control-label" for="user-email"><spring:message code="label.user.email"/>:</label>
-                            <!-- 
-                                Add the email field to the form and ensure
-                                that validation errors are shown.
-                            -->
-                            <form:input id="user-email" path="email" cssClass="form-control"/>
-                            <form:errors id="error-email" path="email" cssClass="help-block"/>
-                        </div>
-                    </div>
-                    <!--
-                        If the user is creating a normal user account, add password fields
-                        to the form.
-                    -->
-                    <c:if test="${user.signInProvider == null}">
-                        <div class="row">
-                            <div id="form-group-password" class="form-group col-lg-4">
-                                <label class="control-label" for="user-password"><spring:message code="label.user.password"/>:</label>
-                                <!--
-                                    Add the password field to the form and ensure 
-                                    that validation errors are shown.
-                                -->
-                                <form:password id="user-password" path="password" cssClass="form-control"/>
-                                <form:errors id="error-password" path="password" cssClass="help-block"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="form-group-passwordVerification" class="form-group col-lg-4">
-                                <label class="control-label" for="user-passwordVerification"><spring:message code="label.user.passwordVerification"/>:</label>
-                                <!-- 
-                                    Add the passwordVerification field to the form and ensure
-                                    that validation errors are shown.
-                                -->
-                                <form:password id="user-passwordVerification" path="passwordVerification" cssClass="form-control"/>
-                                <form:errors id="error-passwordVerification" path="passwordVerification" cssClass="help-block"/>
-                            </div>
-                        </div>
-                    </c:if>
-                    <!-- Add the submit button to the form. -->
-                    <button type="submit" class="btn btn-default"><spring:message code="label.user.registration.submit.button"/></button>
-                </form:form>
-            </div>
-        </div>
-    </sec:authorize>
-    <!--
-        If the user is authenticated, show a help message instead
-        of registration form.
-    -->
-    <sec:authorize access="isAuthenticated()">
-        <p><spring:message code="text.registration.page.authenticated.user.help"/></p>
-    </sec:authorize>
-    
+<div class="container">
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form" method="post" action="registeruser">
+			<h2>Please Sign Up <small></small></h2>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input required="true" type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input required="true" type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input required="true" type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input required="true" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input required="true" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="row">
+				<div class="col-xs-4 col-sm-3 col-md-3">
+					<span class="button-checkbox">
+						<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
+                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+					</span>
+				</div>
+				<div class="col-xs-8 col-sm-9 col-md-9">
+					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+				</div>
+			</div> -->
+			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><a href="${pageContext.request.contextPath}/login" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <%@ include file="common/footer.jsp"%>

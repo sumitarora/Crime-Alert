@@ -27,12 +27,18 @@ public class User {
         
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seq_user_id")
-	@SequenceGenerator(name="seq_user_id", sequenceName="seq_user_id")
+	@SequenceGenerator(name="seq_user_id", sequenceName="seq_user_id")	
 	@Column(name="user_id")
     private Integer id;
 
-	@Column(name="username", nullable=false)
-    public String username;
+	@Column(name="first_name", nullable=false)
+    public String firstName;
+	
+	@Column(name="last_name", nullable=false)
+    public String lastName;
+	
+	@Column(name="email", nullable=false)
+    public String email;
 
 	@Column(name="password", nullable=false)
     public String password;
