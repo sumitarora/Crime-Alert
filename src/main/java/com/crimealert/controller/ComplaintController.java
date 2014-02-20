@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 public class ComplaintController {
 
-	@RequestMapping(value="/complaint-create",method=RequestMethod.GET)
+	@RequestMapping(value="/create",method=RequestMethod.GET)
 	public ModelAndView sayHello(){
 		ModelAndView mv=new ModelAndView("complaint/complaint-create");
 		return mv;
