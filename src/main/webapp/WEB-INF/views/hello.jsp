@@ -15,7 +15,7 @@
     
     </div>
        <div>
-<span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="label label-default">View</span> <span class="label label-primary">Edit</span> <span class="label label-success">Delete</span></div>         
+<span class='badge'>Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span></div>         
      </div>
     <hr>
     
@@ -30,7 +30,7 @@
     </div>
    
     <div>
-        <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="label label-default">View</span> <span class="label label-primary">Edit</span> <span class="label label-success">Delete</span> </div>
+        <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span> </div>
     </div>     
     <hr>
     
@@ -44,7 +44,7 @@
     
     </div>
     <div>
-        <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="label label-default">View</span> <span class="label label-primary">Edit</span> <span class="label label-success">Delete</span> </div>
+        <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span> </div>
     </div> 
     <hr> 
 </div>
