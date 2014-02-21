@@ -17,6 +17,7 @@
        <div>
 <span class='badge'>Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span></div>         
      </div>
+     <br/>
     <hr>
     
     <h2>Crime Title</h2>
@@ -31,7 +32,8 @@
    
     <div>
         <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span> </div>
-    </div>     
+    </div>  
+    <br/>   
     <hr>
     
     <h2>Crime Title</h2>
@@ -46,6 +48,7 @@
     <div>
         <span class="badge">Posted 2014-02-20 20:47:04</span><div class="pull-right"><span class="btn btn-default btn-sm">View</span> <span class="btn btn-primary btn-sm">Edit</span> <span class="btn btn-success btn-sm">Delete</span> </div>
     </div> 
+    <br/>
     <hr> 
 </div>
 </div>
