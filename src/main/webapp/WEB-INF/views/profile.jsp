@@ -1,28 +1,34 @@
-<%@ include file="../common/header.jsp"%>
+<%@ include file="common/header.jsp"%>
 
 <div class="container">
-<%@ include file="../common/left-menu.jsp"%>
+<%@ include file="common/left-menu.jsp"%>
 <div class="col-sm-9">
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <h1>Add Crime</h1>
+    <h1>Update Profile</h1>
     <hr>	
   <div class="form-group">
-    <label for="title" class="col-sm-2 control-label">Title</label>
+    <label for="title" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="title" placeholder="Title">
+      <input type="text" class="form-control" id="title" placeholder="First Name">
     </div>
   </div>
   <div class="form-group">
-    <label for="description" class="col-sm-2 control-label">Description</label>
+    <label for="description" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="description" placeholder="Description">
+      <input type="text" class="form-control" id="description" placeholder="Last Name">
     </div>
   </div>
   <div class="form-group">
-    <label for="location_name" class="col-sm-2 control-label">Location Name</label>
+    <label for="location_name" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="location_name" placeholder="Location Name">
+      <input type="text" class="form-control" id="location_name" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="address" class="col-sm-2 control-label">About</label>
+    <div class="col-sm-4">
+      <textarea class="form-control" id="address" placeholder="About"></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -30,7 +36,7 @@
     <div class="col-sm-4">
       <textarea class="form-control" id="address" placeholder="Address"></textarea>
     </div>
-  </div>
+  </div>  
   <div class="form-group">
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-4">
@@ -291,22 +297,15 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="map" class="col-sm-2 control-label">Map</label>
+    <label for="map" class="col-sm-2 control-label">Photo</label>
     <div class="col-sm-4">
-      <img id="map" alt="" src="http://www.iiap.res.in/files/google-map1.jpg" width="380" height="200">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="upload" class="col-sm-2 control-label">Upload</label>
-    <div class="col-sm-4">
-      <button type="upload" class="btn btn-info col-sm-offset-10" ><i class="fa fa-upload"></i>Upload</button>
+      <img id="map" alt="" src="http://openclipart.org/image/800px/svg_to_png/177482/ProfilePlaceholderSuit.png" width="200">
     </div>
   </div>
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-2">
-      <button  type="save" class="btn btn-primary" ><i class="fa fa-plus-square"></i> Save</button>
-       
+      <button  type="save" class="btn btn-primary" ><i class="fa fa-plus-square"></i> Save</button>       
       <button type="cancel" class="btn btn-danger" ><i class="fa fa-times"></i>Cancel</button>
     </div>
   </div>
@@ -314,4 +313,4 @@
 </div>
 </div>
 
-<%@ include file="../common/footer.jsp"%>
+<%@ include file="common/footer.jsp"%>

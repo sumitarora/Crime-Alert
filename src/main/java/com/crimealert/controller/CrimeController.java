@@ -14,5 +14,12 @@ public class CrimeController {
 	{
 		ModelAndView mav = new ModelAndView("crime/crime-create");
 		return mav;
-		}
 	}
+
+	@RequestMapping(value= "/list", method=RequestMethod.GET )
+	public ModelAndView listCrimes(){
+		ModelAndView mav = new ModelAndView("hello");
+		return mav;
+	}
+	
+}
