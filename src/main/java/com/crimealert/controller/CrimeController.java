@@ -52,6 +52,14 @@ public class CrimeController extends BaseController{
 		mav.addObject("crime", crimeService.findCrimeById(id));
 		return setSelectedMenu(mav);
 	}
+
+	@RequestMapping(value="/view/{id}",method=RequestMethod.GET)
+	public ModelAndView viewCrime(@PathVariable int id){
+		log.debug("inside Crime view: {}", id);
+		ModelAndView mav=new ModelAndView("crime/crime-view");
+		mav.addObject("crime", crimeService.findCrimeById(id));
+		return setSelectedMenu(mav);
+	}
 	
 	@RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
 	public ModelAndView deleteCrime(@PathVariable int id){
