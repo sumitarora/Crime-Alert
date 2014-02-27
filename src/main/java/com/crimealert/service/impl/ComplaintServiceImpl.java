@@ -1,5 +1,7 @@
 package com.crimealert.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -32,5 +34,12 @@ public class ComplaintServiceImpl implements ComplaintService {
 	public void deleteComplaint(int id)  {
 		complaintRepository.delete(id);
 	}
+
+	@Override
+	public List<Complaint> getAllComplaints() {
+		return (List<Complaint>) complaintRepository.findAll();
+	}
+
+	
 	
 }

@@ -65,5 +65,15 @@ public class ComplaintController extends BaseController{
 		return new ModelAndView(new RedirectView("/crime-alert/complaint/list"));
 	}
 	
+	@RequestMapping(value= "/list", method=RequestMethod.GET )
+	public ModelAndView listComplaints(){
+		log.debug("inside complaint list");
+		
+		final List<Complaint> complaints = complaintService.getAllComplaints();
+		ModelAndView mav = new ModelAndView("complaint/complaint-list");
+		mav.addObject("complaints", complaints);
+
+		return setSelectedMenu(mav);
+	}
 }
 

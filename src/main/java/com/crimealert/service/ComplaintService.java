@@ -9,5 +9,7 @@ public interface ComplaintService {
 	Complaint saveComplaint(Complaint complaint);
 	void deleteComplaint(int id);
 	Complaint getComplaintById(int id);
+	List<Complaint> getAllComplaints();
+
 }
 
