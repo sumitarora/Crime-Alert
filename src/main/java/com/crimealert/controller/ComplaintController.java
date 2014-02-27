@@ -52,6 +52,14 @@ public class ComplaintController extends BaseController{
 		mav.addObject("complaint", complaintService.getComplaintById(id));
 		return setSelectedMenu(mav);
 	}
+
+	@RequestMapping(value="/view/{id}",method=RequestMethod.GET)
+	public ModelAndView viewComplaint(@PathVariable int id){
+		log.debug("inside complaint view: {}", id);
+		ModelAndView mav=new ModelAndView("complaint/complaint-view");
+		mav.addObject("complaint", complaintService.getComplaintById(id));
+		return setSelectedMenu(mav);
+	}
 	
 	@RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
 	public ModelAndView deleteComplaint(@PathVariable int id){
