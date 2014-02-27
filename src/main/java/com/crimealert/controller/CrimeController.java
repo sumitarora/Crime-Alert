@@ -64,4 +64,15 @@ public class CrimeController extends BaseController{
 		return new ModelAndView(new RedirectView("/crime-alert/crime/list"));
 	}
 	
+	@RequestMapping(value= "/list", method=RequestMethod.GET )
+	public ModelAndView listCrimes(){
+		log.debug("inside Crime list");
+		
+		final List<Crime> crimes = crimeService.getAllCrimes();
+		ModelAndView mav = new ModelAndView("crime/crime-list");
+		mav.addObject("crimes", crimes);
+
+		return setSelectedMenu(mav);
+	}
+	
 }
