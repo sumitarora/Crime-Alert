@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.crimealert.enums.Role;
 import com.crimealert.model.User;
@@ -19,13 +21,10 @@ import com.crimealert.service.UserService;
 
 @Controller
 @Slf4j
-public class SecurityController {
+public class SecurityController extends BaseController {
 	
 	@Autowired(required=true)
 	UserService userService;
-
-	@Autowired 
-	HttpServletRequest request;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login() {
@@ -53,7 +52,7 @@ public class SecurityController {
 		u.setPassword(password);
 		u.setRole(Role.USER);
 		u.setEnabled(true);
-		userService.insertUser(u);
+		userService.saveUser(u);
 		log.debug("inside register user");
 		return new ModelAndView("register");
 	}	
@@ -78,9 +77,24 @@ public class SecurityController {
     }
     
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView updateProfile() {
-		log.debug("creating user");
-		return new ModelAndView("profile");
+    public ModelAndView viewProfile() {
+		log.debug("view user profile");
+		ModelAndView mav = new ModelAndView("profile");
+		mav.addObject("user", getLoggedInUser());
+		return setSelectedMenu(mav);
     }
 	
+	@RequestMapping(value = "/profile/save", method = RequestMethod.POST)
+    public ModelAndView saveProfile(final @ModelAttribute User user) {
+		log.debug("updating user: {}", user.getUserId());
+		
+		user.setEnabled(getLoggedInUser().getEnabled());
+		user.setPassword(getLoggedInUser().getPassword());
+		user.setPhoto(getLoggedInUser().getPhoto());
+		user.setUserId(getLoggedInUser().getUserId());
+		user.setRole(getLoggedInUser().getRole());
+		
+		userService.saveUser(user);
+		return new ModelAndView(new RedirectView(""));
+    }	
 }

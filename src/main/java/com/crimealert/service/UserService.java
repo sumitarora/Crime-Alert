@@ -4,7 +4,7 @@ import com.crimealert.model.User;
 
 public interface UserService {
   
-  public User loadUserByUsername(String username);
-
-  public User insertUser(final User u);
+  User getUserByEmail(String email);
+  User saveUser(final User u);  
+  User getUserById(int id);
 }

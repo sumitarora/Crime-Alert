@@ -29,25 +29,43 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seq_user_id")
 	@SequenceGenerator(name="seq_user_id", sequenceName="seq_user_id")	
 	@Column(name="user_id")
-    private Integer id;
+    private Integer userId;
 
 	@Column(name="first_name", nullable=false)
-    public String firstName;
+	private String firstName;
 	
 	@Column(name="last_name", nullable=false)
-    public String lastName;
+	private String lastName;
 	
 	@Column(name="email", nullable=false)
-    public String email;
+	private String email;
 
+	@Column(name="about", nullable=true)
+	private String about;
+
+	@Column(name="photo", nullable=false)
+	private String photo;
+
+	@Column(name="address", nullable=true)
+	private String address;
+
+	@Column(name="city", nullable=true)
+	private String city;
+	
+	@Column(name="provience", nullable=true)
+	private String provience;
+	
+	@Column(name="country", nullable=true)
+	private String country;
+	
 	@Column(name="password", nullable=false)
-    public String password;
+	private String password;
 
 	@Column(name="enabled", nullable=false)
-    public Boolean enabled;
+	private Boolean enabled;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="role", nullable=false)
-    public Role role;
+	private Role role;
         
 }

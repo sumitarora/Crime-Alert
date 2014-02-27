@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Override
-	public User loadUserByUsername(String email) {
+	public User getUserByEmail(String email) {
 		List<User> users = userRepository.findByEmail(email);
 		if(users.size() != 0) {
 			return users.get(0);
@@ -25,10 +25,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User insertUser(User u) {
-		
+	public User saveUser(User u) {
 		u = userRepository.save(u);
 		return u;
+	}
+	
+	@Override
+	public User getUserById(int id) {
+		return userRepository.findOne(id);
 	}
 
 }
