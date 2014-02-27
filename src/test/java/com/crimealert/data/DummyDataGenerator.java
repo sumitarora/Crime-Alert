@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.crimealert.enums.Role;
 import com.crimealert.model.Complaint;
-import com.crimealert.model.Crime;
 import com.crimealert.model.Shop;
 import com.crimealert.model.User;
 
@@ -25,20 +24,6 @@ public class DummyDataGenerator {
 		c.setAddress("address");
 		c.setCity("city");
 		c.setComplaintDate(new Date(new java.util.Date().getTime()));
-		c.setCountry("contry");
-		c.setDescription("description");
-		c.setLocation("location");
-		c.setMap("map");
-		c.setProvience("province");
-		c.setTitle("title");
-		return c;
-	}
-	
-	public Crime createCrime() {
-		final Crime c = new Crime();
-		c.setAddress("address");
-		c.setCity("city");
-		c.setCrimeDate(new Date(new java.util.Date().getTime()));
 		c.setCountry("contry");
 		c.setDescription("description");
 		c.setLocation("location");
