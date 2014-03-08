@@ -10,6 +10,6 @@ public interface ComplaintService {
 	void deleteComplaint(int id);
 	Complaint getComplaintById(int id);
 	List<Complaint> getAllComplaints();
-
+	List<Complaint> findByTitleOrDescription(String title, String description);
 }
 

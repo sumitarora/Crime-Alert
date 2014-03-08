@@ -3,6 +3,9 @@ package com.crimealert.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,18 @@ public class ComplaintServiceImpl implements ComplaintService {
 
 	@Resource
 	private ComplaintRepository complaintRepository;
+	
+	@PersistenceContext
+	EntityManager em;
+	
+	@Override
+	public List<Complaint> findByTitleOrDescription(String title, String description) {
+		String query = "select * from tbl_complaint where title like '%"+title+"%' or description like '%"+description+"%'";
+	    final Query q = em.createNativeQuery(query, Complaint.class);
+	    return q.getResultList();		
+	}
+
+
 
 	@Override
 	@Transactional
