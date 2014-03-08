@@ -11,4 +11,6 @@ public interface CrimeService {
 	Crime findCrimeById(int id);	
 	List<Crime> getAllCrimes();
 	
+	List<Crime> findByTitleOrDescription(String title, String description);
+	
 }
