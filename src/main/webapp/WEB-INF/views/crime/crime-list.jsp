@@ -9,7 +9,7 @@
 	<div class="col-md-12">	    
 		<c:forEach items="${crimes}" var="c">
 			<h2>${c.title}</h2>
-			<p> ${c.address}, ${c.city}, ${c.provience}, ${c.country}</p>
+			<p> ${c.address}, ${c.locality}, ${c.administrative_area_level_1}, ${c.country}</p>
 		    <div>
 		        <span class="badge">Posted ${c.crimeDate}</span>
 		        <div class="pull-right">
@@ -32,3 +32,4 @@
 
 
 <%@ include file="../common/footer.jsp"%>
+

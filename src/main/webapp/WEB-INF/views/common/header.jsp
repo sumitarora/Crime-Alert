@@ -19,6 +19,18 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
+	
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.geocomplete.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery.ui.widget.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
+
+	
 </head>
 <body>
 

@@ -54,13 +54,13 @@ public class DummyDataGenerator {
 	public Crime createCrime() {
 		final Crime c = new Crime();
 		c.setAddress("address");
-		c.setCity("city");
+		//c.setCity("city");
 		c.setCrimeDate(new Date(new java.util.Date().getTime()));
 		c.setCountry("contry");
 		c.setDescription("description");
 		c.setLocation("location");
 		c.setMap("map");
-		c.setProvience("province");
+		//c.setProvience("province");
 		c.setTitle("title");
 		return c;
 	}	
