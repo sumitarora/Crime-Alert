@@ -70,5 +70,13 @@ public class Crime {
 	
 	@Column(name="uploads", nullable=true)
 	private String uploads;
+	
+	  @ManyToMany(cascade = {CascadeType.ALL})
+	  @JoinTable(name = "crime_to_comments", 
+	  			 joinColumns = { @JoinColumn(name = "crime_id", referencedColumnName = "crime_id") }, 
+	  			 inverseJoinColumns = { @JoinColumn(name = "comment_id", referencedColumnName = "comment_id") })
+	  @Fetch(FetchMode.JOIN)
+	  private List<Comment>  comments;
+
 }
 
