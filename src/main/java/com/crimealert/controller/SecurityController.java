@@ -52,6 +52,7 @@ public class SecurityController extends BaseController {
 		u.setPassword(password);
 		u.setRole(Role.USER);
 		u.setEnabled(true);
+		u.setPhoto("");
 		userService.saveUser(u);
 		log.debug("inside register user");
 		return new ModelAndView("register");
@@ -79,22 +80,32 @@ public class SecurityController extends BaseController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView viewProfile() {
 		log.debug("view user profile");
-		ModelAndView mav = new ModelAndView("profile");
+		ModelAndView mav = new ModelAndView("user/profile");
 		mav.addObject("user", getLoggedInUser());
 		return setSelectedMenu(mav);
     }
-	
+
 	@RequestMapping(value = "/profile/save", method = RequestMethod.POST)
     public ModelAndView saveProfile(final @ModelAttribute User user) {
 		log.debug("updating user: {}", user.getUserId());
+		log.debug("from admin: {}", user.getFromAdmin());		
+		
+		if(user.getFromAdmin() != null && user.getFromAdmin()) {
+			User userToUpdate = userService.getUserById(user.getUserId());
+			user.setEnabled(userToUpdate.getEnabled());
+			user.setPassword(userToUpdate.getPassword());
+			user.setUserId(userToUpdate.getUserId());
+			user.setRole(userToUpdate.getRole());
+			userService.saveUser(user);			
+			return new ModelAndView(new RedirectView("/crime-alert/user"));
+		}
 		
 		user.setEnabled(getLoggedInUser().getEnabled());
 		user.setPassword(getLoggedInUser().getPassword());
-		user.setPhoto(getLoggedInUser().getPhoto());
 		user.setUserId(getLoggedInUser().getUserId());
 		user.setRole(getLoggedInUser().getRole());
-		
 		userService.saveUser(user);
+		
 		return new ModelAndView(new RedirectView(""));
     }	
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -67,5 +68,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name="role", nullable=false)
 	private Role role;
+	
+	@Transient
+	private Boolean fromAdmin = false;	
         
 }
