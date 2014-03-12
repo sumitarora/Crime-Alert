@@ -23,7 +23,12 @@ public class UserController extends BaseController {
 	public ModelAndView viewAllUsers(){
 		log.debug("inside view all users");
 		ModelAndView mav=new ModelAndView("user/user-list");
-		mav.addObject("users", userService.getAllUsers());
+		String criteria = request.getParameter("criteria");
+		if(criteria != null && !criteria.equals("")) {
+			mav.addObject("users", userService.searchUsers(criteria));
+		} else {
+			mav.addObject("users", userService.getAllUsers());
+		}		
 		return setSelectedMenu(mav);
 	}
 	

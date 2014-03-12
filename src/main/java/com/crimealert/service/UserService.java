@@ -11,4 +11,5 @@ public interface UserService {
   User getUserById(int id);
   
   List<User> getAllUsers();
+  List<User> searchUsers(String criteria);
 }

@@ -3,8 +3,21 @@
 <div class="container">
 	<%@ include file="../common/left-menu.jsp"%>
 	<div class="col-sm-9">
-	<a class="btn btn-success pull-right" href="${pageContext.request.contextPath}/crime/create"><i class="fa fa-plus"></i> Add Crimes</a>
-	<h1>View Crime</h1>
+	<span class="pull-right">
+	
+		<form action="" method="get" class="form-inline">
+			<input type="text" placeholder="Search User..." name="criteria"
+			value="<%
+			if(request.getParameter("criteria") != null) {
+				out.print(request.getParameter("criteria"));
+			}
+			%>">
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/crime/create"><i class="fa fa-plus"></i> Add Crime</a>
+		</form>
+		
+	</span>
+	<h1>View Users</h1>
+	<hr/>
 	<div class="col-md-12">	    
 		<c:forEach items="${users}" var="u">
 			<h2>${u.firstName} ${u.lastName}</h2>
