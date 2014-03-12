@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crimealert.model.Complaint;
+import com.crimealert.model.User;
 import com.crimealert.repository.ComplaintRepository;
 import com.crimealert.service.ComplaintService;
 
@@ -22,15 +23,6 @@ public class ComplaintServiceImpl implements ComplaintService {
 	
 	@PersistenceContext
 	EntityManager em;
-	
-	@Override
-	public List<Complaint> findByTitleOrDescription(String title, String description) {
-		String query = "select * from tbl_complaint where title like '%"+title+"%' or description like '%"+description+"%'";
-	    final Query q = em.createNativeQuery(query, Complaint.class);
-	    return q.getResultList();		
-	}
-
-
 
 	@Override
 	@Transactional
@@ -51,10 +43,20 @@ public class ComplaintServiceImpl implements ComplaintService {
 	}
 
 	@Override
+	public List<Complaint> getAllComplaints(User user) {
+		return (List<Complaint>) complaintRepository.findComplaintsByUser(user);
+	}
+	
+	@Override
 	public List<Complaint> getAllComplaints() {
 		return (List<Complaint>) complaintRepository.findAll();
 	}
-
 	
+	@Override
+	public List<Complaint> findByTitleOrDescription(String title, String description) {
+		String query = "select * from tbl_complaint where title like '%"+title+"%' or description like '%"+description+"%'";
+	    final Query q = em.createNativeQuery(query, Complaint.class);
+	    return q.getResultList();		
+	}	
 	
 }

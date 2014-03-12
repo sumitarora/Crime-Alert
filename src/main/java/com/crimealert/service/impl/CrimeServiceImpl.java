@@ -11,18 +11,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crimealert.model.Crime;
+import com.crimealert.model.User;
 import com.crimealert.repository.CrimeRepository;
 import com.crimealert.service.CrimeService;
 
 @Service
 public class CrimeServiceImpl implements CrimeService {
 	
+	@Resource
+	private CrimeRepository crimeRepository;
+	
 	@PersistenceContext
 	EntityManager em;
 	
-	@Resource
-	private CrimeRepository crimeRepository;
-
 	@Override
 	@Transactional
 	public Crime saveCrime(Crime crime) {
@@ -40,8 +41,13 @@ public class CrimeServiceImpl implements CrimeService {
 	}
 
 	@Override
+	public List<Crime> getAllCrimes(User user) {
+		return (List<Crime>) crimeRepository.findCrimeByUser(user);		
+	}
+	
+	@Override
 	public List<Crime> getAllCrimes() {
-		return (List<Crime>) crimeRepository.findAll();
+		return (List<Crime>) crimeRepository.findAll();		
 	}
 	
 	@Override
@@ -50,5 +56,4 @@ public class CrimeServiceImpl implements CrimeService {
 	    final Query q = em.createNativeQuery(query, Crime.class);
 	    return q.getResultList();		
 	}
-
 }

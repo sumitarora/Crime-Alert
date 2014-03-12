@@ -15,33 +15,55 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.crimealert.model.Complaint;
 import com.crimealert.model.Crime;
+import com.crimealert.model.User;
+import com.crimealert.service.CommentService;
 import com.crimealert.service.ComplaintService;
 import com.crimealert.service.CrimeService;
 
 @Controller
 @Slf4j
-
 public class NavigationController extends BaseController {
-	
-	
+
 	@Autowired
 	CrimeService crimeService;
 	
 	@Autowired
 	ComplaintService complaintService;
 	
+	@Autowired
+	CommentService commentService;
+	
+	
 	@RequestMapping(value={"/", "index"}, method=RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index() {	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		log.debug(auth.getPrincipal().toString());
 		if(auth.getPrincipal().toString().equals("anonymousUser")) {
-			return new ModelAndView("index");
+			return setSelectedMenu(new ModelAndView("index"));
 		} else {
 			return new ModelAndView(new RedirectView("/home", true));
-			
-		}	
-		
+		}
 	}
+
+	@RequestMapping(value="/home", method=RequestMethod.GET)
+	public ModelAndView home() {
+		final User user = getLoggedInUser();
+		final List<Crime> crimes = crimeService.getAllCrimes(user);
+		final List<Complaint> complaints = complaintService.getAllComplaints(user);
+		
+		final ModelAndView mav = new ModelAndView("home");
+		mav.addObject("crimesCount", crimes.size());
+		log.debug("total crimes: {}", crimes.size());
+		
+		mav.addObject("complaintsCount", complaints.size());
+		log.debug("total complaints: {}", complaints.size());
+		
+		mav.addObject("commentsCount", commentService.getAllUserComments(getLoggedInUser()).size());
+		mav.addObject("miscCount", 0);
+		
+		return setSelectedMenu(mav);
+	}
+	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public ModelAndView search() {
 		final String type = request.getParameter("type");
@@ -60,10 +82,5 @@ public class NavigationController extends BaseController {
 			return setSelectedMenu(mav);
 		}
 	}
-
-
-	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public ModelAndView home() {
-		return new ModelAndView("home");
-	}
+	
 }
