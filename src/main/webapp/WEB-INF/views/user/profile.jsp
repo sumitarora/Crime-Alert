@@ -29,7 +29,21 @@
   </div>
   
   <c:if test="${loggedInUser.role.toString().equals(\"ADMIN\")}">
-
+	  <div class="form-group">
+	    <label for="description" class="col-sm-2 control-label">Enabled</label>
+	    <div class="col-sm-4">
+	        <c:choose>
+	        	<c:when test="${user.enabled}">
+	        		<input type="radio" value="Y" name="userenabled" checked> Yes
+      				<input type="radio" value="N" name="userenabled"> No
+	        	</c:when>
+	        	<c:otherwise>
+					<input type="radio" value="Y" name="userenabled"> Yes
+					<input type="radio" value="N" name="userenabled" checked> No
+	        	</c:otherwise>
+	        </c:choose>
+	    </div>
+	  </div>
 	  <div class="form-group">
 	    <label for="location_name" class="col-sm-2 control-label">Role</label>
 	    <div class="col-sm-4">

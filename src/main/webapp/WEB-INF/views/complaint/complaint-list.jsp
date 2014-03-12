@@ -4,7 +4,15 @@
 <div class="container">
 	<%@ include file="../common/left-menu.jsp"%>
 	<div class="col-sm-9">
-	<a class="btn btn-success pull-right" href="${pageContext.request.contextPath}/complaint/create"><i class="fa fa-plus"></i> Add Complaint</a>
+
+	<span class="pull-right">
+	  <c:if test="${!loggedInUser.role.toString().equals(\"USER\")}">
+	  	<a class="btn btn-warning" href="${pageContext.request.contextPath}/complaint/list/all"><i class="fa fa-list-alt"></i> All Complaints</a>
+	  	&nbsp;&nbsp;&nbsp;
+	  </c:if>
+	  <a class="btn btn-success" href="${pageContext.request.contextPath}/complaint/create"><i class="fa fa-plus"></i> Add Complaint</a>
+    </span>
+
 	<h1>View Complaints</h1>
 	<hr/>
 	<div class="col-md-12">

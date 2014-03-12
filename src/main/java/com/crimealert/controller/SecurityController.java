@@ -92,10 +92,15 @@ public class SecurityController extends BaseController {
 		
 		if(user.getFromAdmin() != null && user.getFromAdmin()) {
 			User userToUpdate = userService.getUserById(user.getUserId());
-			user.setEnabled(userToUpdate.getEnabled());
 			user.setPassword(userToUpdate.getPassword());
 			user.setUserId(userToUpdate.getUserId());
 
+			if(request.getParameter("userenabled").equals("Y")) {
+				user.setEnabled(true);
+			} else {
+				user.setEnabled(false);
+			}
+			
 			if(request.getParameter("userrole").equals("0")) {
 				user.setRole(Role.USER);
 			} else if(request.getParameter("userrole").equals("2")) {

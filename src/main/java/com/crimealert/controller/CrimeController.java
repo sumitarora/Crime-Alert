@@ -81,7 +81,7 @@ public class CrimeController extends BaseController{
 	public ModelAndView listCrimes(){
 		log.debug("inside Crime list");
 		
-		final List<Crime> crimes = crimeService.getAllCrimes();
+		final List<Crime> crimes = crimeService.getAllCrimes(getLoggedInUser());
 		ModelAndView mav = new ModelAndView("crime/crime-list");
 		mav.addObject("crimes", crimes);
 
@@ -128,5 +128,15 @@ public class CrimeController extends BaseController{
 		return result;
 	}
 
+	@RequestMapping(value= "/list/all", method=RequestMethod.GET )
+	public ModelAndView listAllCrimes(){
+		log.debug("inside Crime list");
+		
+		final List<Crime> crimes = crimeService.getAllCrimes();
+		ModelAndView mav = new ModelAndView("crime/crime-list");
+		mav.addObject("crimes", crimes);
+
+		return setSelectedMenu(mav);
+	}
 	
 }

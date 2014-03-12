@@ -4,7 +4,15 @@
 <div class="container">
 	<%@ include file="../common/left-menu.jsp"%>
 	<div class="col-sm-9">
-	<a class="btn btn-success pull-right" href="${pageContext.request.contextPath}/crime/create"><i class="fa fa-plus"></i> Add Crimes</a>
+	
+	<span class="pull-right">
+	  <c:if test="${!loggedInUser.role.toString().equals(\"USER\")}">
+	  	<a class="btn btn-warning" href="${pageContext.request.contextPath}/crime/list/all"><i class="fa fa-list-alt"></i> All Crimes</a>
+	  	&nbsp;&nbsp;&nbsp;
+	  </c:if>
+	<a class="btn btn-success" href="${pageContext.request.contextPath}/crime/create"><i class="fa fa-plus"></i> Add Crimes</a>
+	</span>
+	
 	<h1>View Crime</h1>
 	<div class="col-md-12">	    
 		<c:forEach items="${crimes}" var="c">

@@ -82,7 +82,7 @@ public class ComplaintController extends BaseController{
 	public ModelAndView listComplaints(){
 		log.debug("inside complaint list");
 		
-		final List<Complaint> complaints = complaintService.getAllComplaints();
+		final List<Complaint> complaints = complaintService.getAllComplaints(getLoggedInUser());
 		ModelAndView mav = new ModelAndView("complaint/complaint-list");
 		mav.addObject("complaints", complaints);
 
@@ -129,7 +129,16 @@ public class ComplaintController extends BaseController{
 		return result;
 	}
 
+	@RequestMapping(value= "/list/all", method=RequestMethod.GET )
+	public ModelAndView listAllComplaints(){
+		log.debug("inside complaint list");
+		
+		final List<Complaint> complaints = complaintService.getAllComplaints();
+		ModelAndView mav = new ModelAndView("complaint/complaint-list");
+		mav.addObject("complaints", complaints);
 
+		return setSelectedMenu(mav);
+	}
 	
 }
 

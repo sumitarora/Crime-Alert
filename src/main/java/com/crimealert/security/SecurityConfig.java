@@ -36,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	 auth
          .jdbcAuthentication()
          	 .dataSource(dataSource)
-         	 .usersByUsernameQuery("select email, password, true from tbl_user where email=?")
-         	 .authoritiesByUsernameQuery("select email as username, role from tbl_user where email = ?");
+         	 .usersByUsernameQuery("select email, password, true from tbl_user where email=? and enabled = true")
+         	 .authoritiesByUsernameQuery("select email as username, role from tbl_user where email = ? and enabled = true");
     	
     }
 
@@ -60,7 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.antMatchers("/register").permitAll()
         		.antMatchers("/registeruser").permitAll()
         		.antMatchers("/search").permitAll()
-            	.antMatchers("/shop/**").hasAuthority("ADMIN")
+        		.antMatchers("/complaint/list/all").hasAnyAuthority("MANAGER,ADMIN")
+        		.antMatchers("/crime/list/all").hasAnyAuthority("MANAGER,ADMIN")
+        		.antMatchers("/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .logout()
