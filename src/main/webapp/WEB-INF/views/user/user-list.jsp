@@ -12,7 +12,7 @@
 				out.print(request.getParameter("criteria"));
 			}
 			%>">
-			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/crime/create"><i class="fa fa-plus"></i> Add Crime</a>
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/user/create"><i class="fa fa-plus"></i> Add User</a>
 		</form>
 		
 	</span>
@@ -31,7 +31,19 @@
 		        		<span class="label label-danger">Disabled</span>
 		        	</c:otherwise>
 		        </c:choose>
-		        <span class="badge">Role: ${u.role.toString()}</span>
+		        <c:choose>
+		        	<c:when test="${u.role.toString().equals(\"ADMIN\")}">
+		        		<span class="label label-primary">Role: ${u.role.toString()}</span>
+		        	</c:when>
+		        	<c:when test="${u.role.toString().equals(\"MANAGER\")}">
+		        		<span class="label label-info">Role: ${u.role.toString()}</span>
+		        	</c:when>		        	
+		        	<c:otherwise>
+		        		<span class="label label-warning">Role: ${u.role.toString()}</span>
+		        	</c:otherwise>
+		        </c:choose>
+		        
+		        
 		        
 		        <div class="pull-right">
 					<a href="${pageContext.request.contextPath}/user/edit/${u.userId}" class="btn btn-sm btn-primary">

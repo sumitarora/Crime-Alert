@@ -6,11 +6,13 @@
 	<div class="col-sm-9">
 
 	<span class="pull-right">
+	  <a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/complaint/list"><i class="fa fa-list-alt"></i> My Complaints</a>
+	  &nbsp;&nbsp;&nbsp;
 	  <c:if test="${!loggedInUser.role.toString().equals(\"USER\")}">
-	  	<a class="btn btn-warning" href="${pageContext.request.contextPath}/complaint/list/all"><i class="fa fa-list-alt"></i> All Complaints</a>
+	  	<a class="btn btn-warning btn-sm" href="${pageContext.request.contextPath}/complaint/list/all"><i class="fa fa-list-alt"></i> All Complaints</a>
 	  	&nbsp;&nbsp;&nbsp;
 	  </c:if>
-	  <a class="btn btn-success" href="${pageContext.request.contextPath}/complaint/create"><i class="fa fa-plus"></i> Add Complaint</a>
+	  <a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/complaint/create"><i class="fa fa-plus"></i> Add Complaint</a>
     </span>
 
 	<h1>View Complaints</h1>
@@ -21,7 +23,11 @@
 		<h2>${c.title}</h2>
 		<p> ${c.address}, ${c.city}, ${c.provience}, ${c.country}</p>
 	    <div>
-	        <span class="badge">Posted ${c.complaintDate}</span>
+	        <span class="label label-primary">Posted: ${c.complaintDate}</span>
+	        <span class="label label-info">Comments: ${c.comments.size()}</span>
+	        <c:if test="${!loggedInUser.role.toString().equals(\"USER\")}">
+  				<span class="label label-warning">User: ${c.user.firstName} ${c.user.lastName}</span>
+  			 </c:if>
 	        <div class="pull-right">
 				<a href="${pageContext.request.contextPath}/complaint/view/${c.complaintId}" class="btn btn-sm btn-default">
 		  			<i class="fa fa-camera"></i>
