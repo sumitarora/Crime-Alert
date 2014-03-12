@@ -36,13 +36,26 @@ public class NavigationController extends BaseController {
 	
 	@RequestMapping(value={"/", "index"}, method=RequestMethod.GET)
 	public ModelAndView index() {	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		log.debug(auth.getPrincipal().toString());
-		if(auth.getPrincipal().toString().equals("anonymousUser")) {
-			return setSelectedMenu(new ModelAndView("index"));
-		} else {
-			return new ModelAndView(new RedirectView("/home", true));
-		}
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//log.debug(auth.getPrincipal().toString());
+		//if(auth.getPrincipal().toString().equals("anonymousUser")) {
+			//return setSelectedMenu(new ModelAndView("index"));
+		//} else {
+		//	return new ModelAndView(new RedirectView("/home", true));
+		//}
+			
+		final List<Crime> crimes = crimeService.findTopCrimes();
+		final List<Complaint> complaints = complaintService.findTopComplaints();
+		
+		final ModelAndView mav = new ModelAndView("index");
+		mav.addObject("topCrimes", crimes);
+		log.debug("total crimes: {}", crimes.size());
+		
+		mav.addObject("topComplaints", complaints);
+		log.debug("total complaints: {}", complaints.size());
+		
+		return setSelectedMenu(mav);
+
 	}
 
 	@RequestMapping(value="/home", method=RequestMethod.GET)

@@ -56,4 +56,12 @@ public class CrimeServiceImpl implements CrimeService {
 	    final Query q = em.createNativeQuery(query, Crime.class);
 	    return q.getResultList();		
 	}
+	
+	@Override
+  	public List<Crime> findTopCrimes() {
+		String query = "select * from tbl_crime order by crime_id desc limit 4";
+		final Query q = em.createNativeQuery(query, Crime.class);
+		return q.getResultList();		
+	}
+
 }

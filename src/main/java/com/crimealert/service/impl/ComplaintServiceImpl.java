@@ -58,5 +58,12 @@ public class ComplaintServiceImpl implements ComplaintService {
 	    final Query q = em.createNativeQuery(query, Complaint.class);
 	    return q.getResultList();		
 	}	
-	
+
+	@Override
+	public List<Complaint> findTopComplaints() {
+		String query = "select * from tbl_complaint order by complaint_id desc limit 4";
+	    final Query q = em.createNativeQuery(query, Complaint.class);
+	    return q.getResultList();		
+	}
+
 }
