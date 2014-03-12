@@ -27,6 +27,26 @@
       <input type="email" class="form-control" id="location_name" placeholder="Email" value="${user.email}" name="email" required="true">
     </div>
   </div>
+  
+  <c:if test="${loggedInUser.role.toString().equals(\"ADMIN\")}">
+
+	  <div class="form-group">
+	    <label for="location_name" class="col-sm-2 control-label">Role</label>
+	    <div class="col-sm-4">
+	        <c:choose>
+	        	<c:when test="${user.role.toString().equals(\"USER\")}">
+			      <input type="radio" value="0" name="userrole" checked> User
+			      <input type="radio" value="2" name="userrole"> Manager
+	        	</c:when>
+	        	<c:otherwise>
+			      <input type="radio" value="0" name="userrole"> User
+			      <input type="radio" value="2" name="userrole" checked> Manager
+	        	</c:otherwise>
+	        </c:choose>
+	    </div>
+	  </div>  	
+  </c:if>
+  
   <div class="form-group">
     <label for="address" class="col-sm-2 control-label">About</label>
     <div class="col-sm-4">

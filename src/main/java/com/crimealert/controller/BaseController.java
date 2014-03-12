@@ -27,22 +27,32 @@ public abstract class BaseController {
 		mav.addObject("complaintActive", "");
 		mav.addObject("crimeActive", "");
 		mav.addObject("profileActive", "");
+		mav.addObject("homeActive", "");
 		
 		if(request.getRequestURI().contains("complaint")) {
 			mav.addObject("complaintActive", "active");
 		} else if(request.getRequestURI().contains("profile")) {
 			mav.addObject("profileActive", "active");
+		} else if(request.getRequestURI().contains("home"))  {
+			mav.addObject("homeActive", "active");
+		} else if(request.getRequestURI().contains("user"))  {
+			mav.addObject("userActive", "active");
 		} else if(request.getRequestURI().contains("crime")) {
 			mav.addObject("crimeActive", "active");
-		}
+		}		
+		mav.addObject("loggedInUser", getLoggedInUser());
 		return mav;
 	}
 	
 	public User getLoggedInUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
-		final User users = userService.getUserByEmail(user.getUsername());
-		return users;
+		if(!auth.getPrincipal().equals("anonymousUser")) {
+			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
+			final User users = userService.getUserByEmail(user.getUsername());
+			return users;			
+		}
+		return null;
+
 	}
 
 }

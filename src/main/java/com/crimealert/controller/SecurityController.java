@@ -95,7 +95,14 @@ public class SecurityController extends BaseController {
 			user.setEnabled(userToUpdate.getEnabled());
 			user.setPassword(userToUpdate.getPassword());
 			user.setUserId(userToUpdate.getUserId());
-			user.setRole(userToUpdate.getRole());
+
+			if(request.getParameter("userrole").equals("0")) {
+				user.setRole(Role.USER);
+			} else if(request.getParameter("userrole").equals("2")) {
+				user.setRole(Role.MANAGER);
+			} else {
+				user.setRole(Role.USER);
+			}
 			userService.saveUser(user);			
 			return new ModelAndView(new RedirectView("/crime-alert/user"));
 		}
