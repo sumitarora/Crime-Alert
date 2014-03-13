@@ -25,13 +25,13 @@
   <div class="form-group">
     <label for="City" class="col-sm-2 control-label">City</label>
     <div class="col-sm-4">
-      ${complaint.city}
+      ${complaint.locality}
     </div>
   </div>
   <div class="form-group">
     <label for="Province" class="col-sm-2 control-label">State / Province</label>
     <div class="col-sm-4">
-      ${complaint.provience}
+      ${complaint.administrative_area_level_1}
     </div>
   </div>
   <div class="form-group">      
@@ -74,7 +74,7 @@
 	</div>
 	
 	<c:forEach items="${complaint.comments}" var="c" varStatus="loop">
-		<div id="comments" class="container text-center">
+		<div class="container text-center">
 		
 		<c:if test="${loop.index % 2 eq 0}">
 			<span class="alert alert-info col-sm-2" style="height: 141px;">
@@ -103,6 +103,46 @@
  
 </div>
 <script type="text/javascript">
+var _location = null;
+
+function showPosition()
+{
+    _location = "${complaint.location}";
+	
+	var obj = {
+			map: "#address_map",
+			location: _location			
+	};
+	$("#address").geocomplete(obj);
+}
+
+function getUploadedFiles(uploads) {
+	console.log(uploads);
+	if(uploads !== "undefined" && uploads !== "") {
+		var  uploads = uploads.split(",");
+		console.log(uploads);
+		_uploads = [];
+		for(var i = 0; i < uploads.length; i++) {
+			$.get("${pageContext.request.contextPath}/upload/"+uploads[i], function( data ) {
+				_uploads.push(data);
+				console.log(_uploads);
+				populateItem(data);
+			});
+		}
+		console.log(_uploads);
+	}	
+}
+
+function populateItem(obj) {
+	
+	var filename = obj.originalFileName;
+	var url = obj.filePath;
+	var html = "<li><a target='_blank' href='" + url + "'>" + filename + "</a></li>";
+	console.log(url, html);
+    $("#filesList").append(html);
+    setUploadsText(_uploads);	
+}
+
 function addComment() {
 	var comment = $("#txtComment").val();
 	if(comment === "undefined" || comment === "") {
@@ -125,6 +165,9 @@ function addComment() {
 }
 
 $(document).ready(function(){
+	showPosition();
+	getUploadedFiles("${complaint.uploads}");
+	
 	$("#btnAddComment").click(addComment);
 });
 </script>

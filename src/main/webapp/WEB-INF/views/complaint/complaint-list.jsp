@@ -21,7 +21,7 @@
 	
 	<c:forEach items="${complaints}" var="c">
 		<h2>${c.title}</h2>
-		<p> ${c.address}, ${c.city}, ${c.provience}, ${c.country}</p>
+		<p> ${c.address}, ${c.locality}, ${c.administrative_area_level_1}, ${c.country}</p>
 	    <div>
 	        <span class="label label-primary">Posted: ${c.complaintDate}</span>
 	        <span class="label label-info">Comments: ${c.comments.size()}</span>
