@@ -3,15 +3,15 @@
 <div class="container text-center">
 	<form class="row form-inline" role="form" method="get" action="${pageContext.request.contextPath}/search">
 	  <div class="form-group">
-	    <input class="form-control" type="text" placeholder="Search Criteria" name="criteria">
+	    <input class="form-control" type="text" id="criteria" placeholder="Search Criteria" name="criteria">
 	  </div>
 	  <div class="form-group">
-	    <select class="form-control" name="type">
+	    <select class="form-control" name="type" id="searchType">
 			<option value="cr">Crime</option>
 			<option value="co">Complaints</option>
 		</select>
 	  </div>
-	  <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"></i></button>
+	  <button type="submit" class="btn btn-success btn-sm" id="btnSearch"><i class="fa fa-search"></i></button>
 	</form>
 	<hr/>
 	<div class="row">

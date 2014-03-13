@@ -2,29 +2,27 @@
 <div class="container">
 <%@ include file="../common/left-menu.jsp"%>
 <div class="col-sm-9">
-<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/profile/save" method="post">
-	<input type="hidden" name="userId" value="${user.userId}">
-	<input type="hidden" name="fromAdmin" value="${fromAdmin}">
-	<input type="hidden" id="photo" name="photo" value="${user.photo}">
+<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/user/save" method="post">
+	<input type="hidden" id="photo" name="photo">
   <div class="form-group">
-    <h1>Update Profile</h1>
+    <h1>Create User</h1>
     <hr>	
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="fname" placeholder="First Name" value="${user.firstName}" name="firstName" required="true">
+      <input type="text" class="form-control" id="fname" placeholder="First Name" name="firstName" required="true">
     </div>
   </div>
   <div class="form-group">
     <label for="description" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="lname" placeholder="Last Name" value="${user.lastName}" name="lastName" required="true">
+      <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lastName" required="true">
     </div>
   </div>
   <div class="form-group">
     <label for="location_name" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-4">
-      <input type="email" class="form-control" id="email" placeholder="Email" value="${user.email}" name="email" required="true">
+      <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="true">
     </div>
   </div>
   
@@ -32,31 +30,15 @@
 	  <div class="form-group">
 	    <label for="description" class="col-sm-2 control-label">Enabled</label>
 	    <div class="col-sm-4">
-	        <c:choose>
-	        	<c:when test="${user.enabled}">
-	        		<input type="radio" value="Y" name="userenabled" checked> Yes
-      				<input type="radio" value="N" name="userenabled"> No
-	        	</c:when>
-	        	<c:otherwise>
-					<input type="radio" value="Y" name="userenabled"> Yes
-					<input type="radio" value="N" name="userenabled" checked> No
-	        	</c:otherwise>
-	        </c:choose>
+       		<input type="radio" value="Y" name="userenabled" checked> Yes
+			<input type="radio" value="N" name="userenabled"> No
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="location_name" class="col-sm-2 control-label">Role</label>
 	    <div class="col-sm-4">
-	        <c:choose>
-	        	<c:when test="${user.role.toString().equals(\"USER\")}">
-			      <input type="radio" value="0" name="userrole" checked> User
-			      <input type="radio" value="2" name="userrole"> Manager
-	        	</c:when>
-	        	<c:otherwise>
-			      <input type="radio" value="0" name="userrole"> User
-			      <input type="radio" value="2" name="userrole" checked> Manager
-	        	</c:otherwise>
-	        </c:choose>
+	      <input type="radio" value="0" name="userrole" checked> User
+	      <input type="radio" value="2" name="userrole"> Manager
 	    </div>
 	  </div>  	
   </c:if>
@@ -64,31 +46,31 @@
   <div class="form-group">
     <label for="address" class="col-sm-2 control-label">About</label>
     <div class="col-sm-4">
-      <textarea class="form-control" id="about" placeholder="About" name="about">${user.about}</textarea>
+      <textarea class="form-control" id="about" placeholder="About" name="about"></textarea>
     </div>
   </div>
   <div class="form-group">
     <label for="address" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-4">
-      <textarea class="form-control" id="address" placeholder="Address" name="address">${user.address}</textarea>
+      <textarea class="form-control" id="address" placeholder="Address" name="address"></textarea>
     </div>
   </div>  
   <div class="form-group">
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="city" placeholder="City" value="${user.city}" name="city">
+      <input type="text" class="form-control" id="city" placeholder="City" name="city">
     </div>
   </div>
   <div class="form-group">
     <label for="state" class="col-sm-2 control-label">State/Province</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="state" placeholder="State/Province" value="${user.provience}" name="provience">
+      <input type="text" class="form-control" id="state" placeholder="State/Province" name="provience">
     </div>
   </div>
   <div class="form-group">
     <label for="country" class="col-sm-2 control-label">Country</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="country" placeholder="Country" value="${user.country}" name="country">
+      <input type="text" class="form-control" id="country" placeholder="Country" name="country">
     </div>
   </div>
   <div class="form-group">

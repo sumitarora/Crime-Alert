@@ -54,7 +54,7 @@
 			    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>			    
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-			    <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+			    <li><a id="btnLogout" href="${pageContext.request.contextPath}/logout">Logout</a></li>
 			</sec:authorize>
             </ul>
           </div><!--/.nav-collapse -->

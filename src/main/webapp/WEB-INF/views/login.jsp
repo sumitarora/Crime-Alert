@@ -27,8 +27,8 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="Sign In" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
-				<div class="col-xs-12 col-md-6"><a href="${pageContext.request.contextPath}/register" class="btn btn-primary btn-block btn-lg">Register</a></div>
+				<div class="col-xs-12 col-md-6"><input type="submit" id="btnSubmit" value="Sign In" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><a id="btnRegister" href="${pageContext.request.contextPath}/register" class="btn btn-primary btn-block btn-lg">Register</a></div>
 			</div>
 		</form>
 	</div>

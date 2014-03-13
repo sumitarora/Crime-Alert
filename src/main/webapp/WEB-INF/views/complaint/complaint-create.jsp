@@ -68,7 +68,7 @@
   <div class="form-group">
 <!--     <label for="Upload" class="col-sm-2 control-label"></label> -->
     <div class="col-sm-4 col-sm-offset-2">
-          <button href="#" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+          <button id="btnSave" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
           <a href="${pageContext.request.contextPath}/complaint/list" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
     </div>
   </div>

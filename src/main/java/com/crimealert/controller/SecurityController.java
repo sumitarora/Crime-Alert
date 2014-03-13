@@ -55,7 +55,7 @@ public class SecurityController extends BaseController {
 		u.setPhoto("");
 		userService.saveUser(u);
 		log.debug("inside register user");
-		return new ModelAndView("register");
+		return new ModelAndView(new RedirectView("login"));
 	}	
 	
 	@RequestMapping(value="/accessdenied", method=RequestMethod.GET)
@@ -88,22 +88,27 @@ public class SecurityController extends BaseController {
 	@RequestMapping(value = "/profile/save", method = RequestMethod.POST)
     public ModelAndView saveProfile(final @ModelAttribute User user) {
 		log.debug("updating user: {}", user.getUserId());
-		log.debug("from admin: {}", user.getFromAdmin());		
+		log.debug("from admin: {}", user.getFromAdmin());
+
+		if(!(user.getPhoto() != null && !user.getPhoto().equals(""))) {
+			user.setPhoto("https://s3.amazonaws.com/crime-alert/1394710047317.png");
+			log.debug("setting default pic");
+		}
 		
 		if(user.getFromAdmin() != null && user.getFromAdmin()) {
 			User userToUpdate = userService.getUserById(user.getUserId());
 			user.setPassword(userToUpdate.getPassword());
 			user.setUserId(userToUpdate.getUserId());
 
-			if(request.getParameter("userenabled").equals("Y")) {
+			if(request.getParameter("userenabled") != null && request.getParameter("userenabled").equals("Y")) {
 				user.setEnabled(true);
 			} else {
 				user.setEnabled(false);
 			}
 			
-			if(request.getParameter("userrole").equals("0")) {
+			if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("0")) {
 				user.setRole(Role.USER);
-			} else if(request.getParameter("userrole").equals("2")) {
+			} else if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("2")) {
 				user.setRole(Role.MANAGER);
 			} else {
 				user.setRole(Role.USER);

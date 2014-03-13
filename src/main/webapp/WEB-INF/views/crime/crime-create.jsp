@@ -22,6 +22,7 @@
 <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/crime/save" method="post">
   <input type="hidden" name="crimeId" value="${crime.crimeId}">
   <input type="hidden" name="uploads" id="uploads" value="${crime.uploads}">
+  <input type="text" name="userId" value="${crime.user.userId}">
   
   <div class="form-group">
   <div class="form-group">
@@ -77,7 +78,7 @@
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-6">
-          <button class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+          <button class="btn btn-success" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
           <a href="${pageContext.request.contextPath}/crime/list" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
     </div>
   </div>
