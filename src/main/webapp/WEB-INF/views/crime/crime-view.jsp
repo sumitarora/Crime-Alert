@@ -71,7 +71,7 @@
 	</div>
 	
 	<c:forEach items="${crime.comments}" var="c" varStatus="loop">
-		<div class="container text-center">
+		<div id="comments" class="container text-center">
 
 		<c:if test="${loop.index % 2 eq 0}">
 			<span class="alert alert-info col-sm-2" style="height: 141px;">

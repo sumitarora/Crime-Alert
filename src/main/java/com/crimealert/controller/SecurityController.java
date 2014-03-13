@@ -106,12 +106,14 @@ public class SecurityController extends BaseController {
 				user.setEnabled(false);
 			}
 			
-			if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("0")) {
-				user.setRole(Role.USER);
-			} else if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("2")) {
-				user.setRole(Role.MANAGER);
-			} else {
-				user.setRole(Role.USER);
+			if(!userToUpdate.getRole().equals(Role.ADMIN)) {
+				if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("0")) {
+					user.setRole(Role.USER);
+				} else if(request.getParameter("userrole") != null && request.getParameter("userrole").equals("2")) {
+					user.setRole(Role.MANAGER);
+				} else {
+					user.setRole(Role.USER);
+				}				
 			}
 			userService.saveUser(user);			
 			return new ModelAndView(new RedirectView("/crime-alert/user"));

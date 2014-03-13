@@ -23,7 +23,7 @@
 				<%-- <p>${c.administrative_area_level_1}, ${c.country}</p> --%>
 			    <span class="badge">&nbsp;&nbsp;Posted ${c.complaintDate}&nbsp;&nbsp;</span>
 			    <br/>
-			    <a href="${pageContext.request.contextPath}/complaint/view/${c.complaintId}">Details</a>
+			    <a id="btnComplaintDetails" href="${pageContext.request.contextPath}/complaint/view/${c.complaintId}">Details</a>
 			</div>
 		</c:forEach>
 	</div>
@@ -37,7 +37,7 @@
 				<p>${c.administrative_area_level_1}, ${c.country}</p>
 			    <span class="badge">&nbsp;&nbsp;Posted ${c.crimeDate}&nbsp;&nbsp;</span>
 			    <br/>
-			    <a href="${pageContext.request.contextPath}/crime/view/${c.crimeId}">Details</a>
+			    <a id="btnCrimeDetails" href="${pageContext.request.contextPath}/crime/view/${c.crimeId}">Details</a>
 			</div>
 		</c:forEach>
 	</div>

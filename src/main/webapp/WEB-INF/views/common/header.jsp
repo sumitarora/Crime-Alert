@@ -54,7 +54,10 @@
 			    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>			    
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-			    <li><a id="btnLogout" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+				<li><h4 style="color:#fff;">Welcome ${loggedInUser.firstName} ${loggedInUser.lastName}</h4></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+				<li><a id="btnHomeHeader" href="${pageContext.request.contextPath}/home">Home</a></li>
+			    <li><a id="btnLogout" href="${pageContext.request.contextPath}/logout">Logout</a></li>			    
 			</sec:authorize>
             </ul>
           </div><!--/.nav-collapse -->
