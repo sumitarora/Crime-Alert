@@ -25,7 +25,7 @@ public class TestUIRegister extends BaseUITestCase {
 		Thread.sleep(SLEEP);
 		
 		WebElement email = driver.findElement(By.id("email"));
-		email.sendKeys("john@gmail.com");
+		email.sendKeys("johngmail.com");
 		Thread.sleep(SLEEP);
 		
 		WebElement password = driver.findElement(By.id("password"));

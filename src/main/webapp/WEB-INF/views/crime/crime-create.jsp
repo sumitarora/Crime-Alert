@@ -22,49 +22,49 @@
 <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/crime/save" method="post">
   <input type="hidden" name="crimeId" value="${crime.crimeId}">
   <input type="hidden" name="uploads" id="uploads" value="${crime.uploads}">
-  <input type="text" name="userId" value="${crime.user.userId}">
+  <input type="hidden" name="userId" value="${crime.user.userId}">
   
   <div class="form-group">
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="${crime.title}">
+      <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="${crime.title}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="description" class="col-sm-2 control-label">Description</label>
     <div class="col-sm-6">
-      <textarea class="form-control" id="description" placeholder="Description" name="description">${crime.description}</textarea>
+      <textarea class="form-control" id="description" placeholder="Description" name="description" required>${crime.description}</textarea>
     </div>
   </div>
   <div class="form-group">
     <label for="address" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${crime.address}">
+      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${crime.address}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="locality" placeholder="City" name="locality" value="${crime.locality}">
+      <input type="text" class="form-control" id="locality" placeholder="City" name="locality" value="${crime.locality}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="state" class="col-sm-2 control-label">State / Province</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="state" placeholder="State / Province" name="administrative_area_level_1" value="${crime.administrative_area_level_1}">
+      <input type="text" class="form-control" id="state" placeholder="State / Province" name="administrative_area_level_1" value="${crime.administrative_area_level_1}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="country" class="col-sm-2 control-label">Country</label>
     <div class="col-sm-6">
-      	<input type="text" class="form-control" id="country" placeholder="Country" name="country" value="${crime.country}">
+      	<input type="text" class="form-control" id="country" placeholder="Country" name="country" value="${crime.country}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="location_name" class="col-sm-2 control-label">Geo-Location</label>
     <div class="col-sm-6">
-      <input readonly type="text" class="form-control" id="location_name" placeholder="Location Name" name="location" value="${crime.location}">
+      <input readonly type="text" class="form-control" id="location_name" placeholder="Location Name" name="location" value="${crime.location}" required>
     </div>
   </div>  
   <div class="form-group">

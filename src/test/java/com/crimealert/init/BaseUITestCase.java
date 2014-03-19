@@ -13,7 +13,7 @@ public class BaseUITestCase {
 
 	public WebDriver driver;	
 	
-	public static int SLEEP 				    = 1000;
+	public static int SLEEP 				    = 500;
 	
 	public static String BASE_URL 				= "http://localhost:8080/crime-alert/";
 	public static String LOGIN_URL 				= BASE_URL + "login";
@@ -40,7 +40,8 @@ public class BaseUITestCase {
 
 	@Before
 	public void setupSelenium() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\SatnamWaheguru\\Downloads\\chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\SatnamWaheguru\\Downloads\\chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/Users/sarora/Downloads/chromedriver");
 		driver = new ChromeDriver();
 	}
 
@@ -55,15 +56,15 @@ public class BaseUITestCase {
 		
 		WebElement username = driver.findElement(By.id("username"));
 		username.sendKeys("admin@gmail.com");
-		Thread.sleep(1000);
+		Thread.sleep(SLEEP);
 		
 		WebElement password = driver.findElement(By.id("password"));
 		password.sendKeys("123456");
-		Thread.sleep(1000);
+		Thread.sleep(SLEEP);
 		
 		WebElement btnSubmit = driver.findElement(By.id("btnSubmit"));
 		btnSubmit.click();
-		Thread.sleep(1000);		
+		Thread.sleep(SLEEP);		
 	}
 	
 }

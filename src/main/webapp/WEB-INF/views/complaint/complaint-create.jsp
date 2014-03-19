@@ -22,42 +22,43 @@
 <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/complaint/save" method="post">
   <input type="hidden" name="complaintId" value="${complaint.complaintId}">
   <input type="hidden" name="uploads" id="uploads" value="${crime.uploads}">
+  <input type="hidden" name="userId" value="${complaint.user.userId}">
   
   <div class="form-group">
     <label for="Title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="Title" placeholder="Title" name="title" value="${complaint.title}">
+      <input type="text" class="form-control" id="Title" placeholder="Title" name="title" value="${complaint.title}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="Description" class="col-sm-2 control-label">Description</label>
     <div class="col-sm-6">
-      <textarea rows="4" cols="6" class="form-control" id="Description" name="description" placeholder="Description">${complaint.description}</textarea>
+      <textarea rows="4" cols="6" class="form-control" id="Description" name="description" placeholder="Description" required>${complaint.description}</textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label for="Address" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${complaint.address}">
+      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${complaint.address}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="City" class="col-sm-2 control-label">City</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="locality" placeholder="City" name="locality" value="${complaint.locality}">
+      <input type="text" class="form-control" id="locality" placeholder="City" name="locality" value="${complaint.locality}" required>
     </div>
   </div>
   <div class="form-group">
     <label for="Province" class="col-sm-2 control-label">State / Province</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="province" placeholder="Province" name="administrative_area_level_1" value="${complaint.administrative_area_level_1}">
+      <input type="text" class="form-control" id="province" placeholder="Province" name="administrative_area_level_1" value="${complaint.administrative_area_level_1}" required>
     </div>
   </div>
   <div class="form-group">      
    <label for="Province" class="col-sm-2 control-label">Country</label>
    <div class="col-sm-6">
-   		<input type="text" class="form-control" id="country" placeholder="Country" name="country" value="${complaint.country}">
+   		<input type="text" class="form-control" id="country" placeholder="Country" name="country" value="${complaint.country}" required>
    </div>
    </div>
   
@@ -78,7 +79,7 @@
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <div class="form-group">
     <div class="col-sm-6 col-sm-offset-2">
-          <button href="#" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+          <button href="#" class="btn btn-success" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
           <a href="${pageContext.request.contextPath}/complaint/list" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
     </div>
   </div>

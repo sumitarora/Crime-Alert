@@ -44,7 +44,11 @@ public class ComplaintController extends BaseController{
 		
 		complaint.setComplaintDate(new Date(new java.util.Date().getTime()));
 		complaint.setMap("map");
-		complaint.setUser(getLoggedInUser());
+		if(request.getParameter("userId") != null && !request.getParameter("userId").equals("")) {
+			complaint.setUser(userService.getUserById(Integer.parseInt(request.getParameter("userId"))));
+		} else {
+			complaint.setUser(getLoggedInUser());
+		}
 		
 		complaintService.saveComplaint(complaint);
 		return new ModelAndView(new RedirectView("list"));
