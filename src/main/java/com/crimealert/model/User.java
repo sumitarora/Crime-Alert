@@ -65,6 +65,12 @@ public class User {
 	@Column(name="enabled", nullable=false)
 	private Boolean enabled;
 	
+	@Column(name="verification_token", nullable=true)
+	private String verifyToken;
+
+	@Column(name="date_joined", nullable=true)
+	private String dateJoined;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="role", nullable=false)
 	private Role role;

@@ -12,4 +12,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     
     List<User> findAll();
     
+    User findByVerifyToken(String token);
+    
 }

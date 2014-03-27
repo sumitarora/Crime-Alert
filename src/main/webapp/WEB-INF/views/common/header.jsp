@@ -29,8 +29,23 @@
 	<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery.ui.widget.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
-
 	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/nvd3/nv.d3.css">
+	
+	<script src="${pageContext.request.contextPath}/resources/nvd3/lib/d3.v2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/nvd3/nv.d3.js"></script>
+	
+	<script src="http://googlemapapitutorial.com/js/custom_map_tooltip.js" type="text/javascript"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqedN_hmIAD2x_Dahwa6VGIwPyAd8S-Ew&sensor=false">
+    </script>   
+    
+	<style type="text/css">
+   		#map-canvas { 
+   			width: 800px;
+   			height: 600px;
+   		}
+  	</style>
 </head>
 <body>
 
