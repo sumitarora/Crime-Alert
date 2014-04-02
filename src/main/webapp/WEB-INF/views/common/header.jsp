@@ -22,7 +22,7 @@
 	
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places,geometry,visualization"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.geocomplete.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	
@@ -36,9 +36,9 @@
 	<script src="${pageContext.request.contextPath}/resources/nvd3/nv.d3.js"></script>
 	
 	<script src="http://googlemapapitutorial.com/js/custom_map_tooltip.js" type="text/javascript"></script>
-    <script type="text/javascript"
+    <!-- <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqedN_hmIAD2x_Dahwa6VGIwPyAd8S-Ew&sensor=false">
-    </script>   
+    </script> -->   
     
 	<style type="text/css">
    		#map-canvas { 
@@ -78,3 +78,4 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
+
