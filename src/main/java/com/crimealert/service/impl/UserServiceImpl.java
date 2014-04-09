@@ -14,7 +14,6 @@ import com.crimealert.model.Email;
 import com.crimealert.model.User;
 import com.crimealert.repository.UserRepository;
 import com.crimealert.service.UserService;
-import com.crimealert.util.GeneralUtils;
 import com.crimealert.util.MailgunEmail;
 
 @Service
