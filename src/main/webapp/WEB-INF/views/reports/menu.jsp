@@ -308,4 +308,3 @@ function exampleData(data) {
 
 <%@ include file="../common/footer.jsp"%>
 	
-
