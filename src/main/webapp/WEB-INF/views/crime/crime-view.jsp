@@ -108,7 +108,7 @@ var _location = null;
 
 function showPosition()
 {
-    _location = "${crime.location}";
+    _location = "${crime.latitude},${crime.longitude}";
 	
 	var obj = {
 			map: "#address_map",

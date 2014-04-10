@@ -78,8 +78,8 @@
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-6">
-          <button class="btn btn-success" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
-          <a href="${pageContext.request.contextPath}/crime/list" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
+          <button class="btn btn-success btn-sm" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
+          <a href="${pageContext.request.contextPath}/crime/list" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Cancel</a>
     </div>
   </div>
 </form>
@@ -100,8 +100,8 @@ function getLocation()
 function showPosition(position)
 {
 	<c:choose>
-    <c:when test= "${crime.location != null}">
-    	_location = "${crime.location}";
+    <c:when test= "${crime.latitude != null && crime.longitude != null}">
+    	_location = "${crime.latitude},${crime.longitude}";
     </c:when>
 	<c:otherwise>
 		_location = position.coords.latitude + "," + position.coords.longitude;
@@ -111,9 +111,17 @@ function showPosition(position)
 	var obj = {
 			map: "#address_map",
 			details: "form",
-			location: _location			
+			location: _location,
+			markerOptions: {
+			    draggable: true
+			  }			
 		};
 	$("#address").geocomplete(obj);
+    $("#address").bind("geocode:dragged", function(event, latLng){
+    	console.log("after drag:" + latLng);
+        var loc = latLng.lat() + "," + latLng.lng();
+        $("#address").geocomplete("find", loc);
+    });	
 }
 
 function setUploadsText(uploads) {
@@ -170,8 +178,7 @@ $(document).ready(function(){
     	    uploadProgress: function(event, position, total, percentComplete) 
     	    {
     	        //$("#bar").width(percentComplete+'%');
-    	        //$("#percent").html(percentComplete+'%');
-    	 
+    	        //$("#percent").html(percentComplete+'%');    	 
     	    },
     	    success: function() 
     	    {

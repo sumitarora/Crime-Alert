@@ -50,6 +50,11 @@ public class CrimeController extends BaseController{
 		} else {
 			crime.setUser(getLoggedInUser());
 		}
+		
+		String[] location = crime.getLocation().split(",");
+		crime.setLatitude(location[0]);
+		crime.setLongitude(location[1]);
+		
 		crimeService.saveCrime(crime);
 		return new ModelAndView(new RedirectView("list"));
 	}

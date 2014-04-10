@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -50,8 +51,11 @@ public class Crime {
 	@Column(name="description", nullable=true)
 	private String description;
 	
-	@Column(name="location", nullable=false)
-	private String location;
+	@Column(name="latitude", nullable=false)
+	private String latitude;
+	
+	@Column(name="longitude", nullable=false)
+	private String longitude;	
 
 	@Column(name="address", nullable=false)
 	private String address;
@@ -67,6 +71,9 @@ public class Crime {
 
 	@Column(name="map", nullable=false)
 	private String map;
+	
+	@Transient
+	private String location;
 	
 	@Column(name="uploads", nullable=true)
 	private String uploads;

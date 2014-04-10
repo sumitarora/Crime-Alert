@@ -13,6 +13,7 @@ public interface CrimeService {
 	List<Crime> getAllCrimes();
 	
 	List<Crime> findByTitleOrDescription(String title, String description);
+	List<Crime> findByAddress(String like);
 	
 	List<Crime> findTopCrimes();
 }

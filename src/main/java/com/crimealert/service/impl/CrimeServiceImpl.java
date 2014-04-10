@@ -58,6 +58,13 @@ public class CrimeServiceImpl implements CrimeService {
 	}
 	
 	@Override
+	public List<Crime> findByAddress(String like) {
+		String query = "select * from tbl_crime where address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%'";
+	    final Query q = em.createNativeQuery(query, Crime.class);
+	    return q.getResultList();		
+	}
+	
+	@Override
   	public List<Crime> findTopCrimes() {
 		String query = "select * from tbl_crime order by crime_id desc limit 4";
 		final Query q = em.createNativeQuery(query, Crime.class);
