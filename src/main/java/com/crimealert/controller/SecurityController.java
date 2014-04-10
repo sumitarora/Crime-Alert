@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,12 +29,18 @@ public class SecurityController extends BaseController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login() {
+		if(getLoggedInUser() != null) {
+			return new ModelAndView(new RedirectView("home"));
+		}
 		log.debug("inside login");
 		return new ModelAndView("login");
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public ModelAndView register() {
+		if(getLoggedInUser() != null) {
+			return new ModelAndView(new RedirectView("home"));
+		}		
 		log.debug("inside register");
 		return new ModelAndView("register");
 	}
@@ -45,13 +52,16 @@ public class SecurityController extends BaseController {
 		final String email = request.getParameter("email");
 		final String password = request.getParameter("password");
 		
+		User existing = userService.getUserByEmail(email);
+		if(existing != null) {
+			return new ModelAndView(new RedirectView("register?emailexists=true&email="+email));
+		}
 		final User u = new User();
 		u.setFirstName(fname);
 		u.setLastName(lname);
 		u.setEmail(email);
 		u.setPassword(password);
 		u.setRole(Role.USER);
-		u.setEnabled(true);
 		u.setPhoto("");
 		userService.saveUser(u);
 		log.debug("inside register user");
@@ -126,5 +136,50 @@ public class SecurityController extends BaseController {
 		userService.saveUser(user);
 		
 		return new ModelAndView(new RedirectView(""));
-    }	
+    }
+	
+	
+	@RequestMapping(value = "/verify/{token}", method = RequestMethod.GET)
+	public ModelAndView verifyEmail(ModelMap model, @PathVariable String token) {
+
+		ModelAndView mav = new ModelAndView("verify_email");
+		final User verifiedUser = userService.verifyEmail(token);
+
+		if (verifiedUser == null) {
+			mav.addObject("message", "Oops! Invalid token. Failed to verify");
+		} else {
+			mav.addObject("message",
+					"Successfully verified your email address. Please procced to login");
+		}
+
+		return mav;
+	}
+	
+	@RequestMapping(value="/changepassword", method=RequestMethod.GET)
+	public ModelAndView changePassword(){
+		ModelAndView mav = new ModelAndView("user/change-password");
+		if(request.getParameter("c") != null) {
+			mav.addObject("changed", true);
+		}
+		return setSelectedMenu(mav);
+	}
+
+	@RequestMapping(value="/resetpassword", method=RequestMethod.POST)
+	public ModelAndView updatePassword(){
+		String oldPassword = request.getParameter("oldPassword");
+		String newPassword = request.getParameter("newPassword");
+
+		if(!getLoggedInUser().getPassword().equals(oldPassword)){
+			request.setAttribute("error", "Old Password did not match");
+			return new ModelAndView(new RedirectView("changepassword"));
+		}
+		User u = getLoggedInUser();
+		u.setPassword(newPassword);
+		userService.updateUser(u);
+		log.debug(oldPassword + newPassword);
+		return new ModelAndView(new RedirectView("changepassword?c=true"));
+	}
+	
 }
+
+

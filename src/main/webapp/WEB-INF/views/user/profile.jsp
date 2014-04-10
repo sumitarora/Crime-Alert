@@ -7,7 +7,8 @@
 	<input type="hidden" name="fromAdmin" value="${fromAdmin}">
 	<input type="hidden" id="photo" name="photo" value="${user.photo}">
   <div class="form-group">
-    <h1>Update Profile</h1>
+  	<a href="${pageContext.request.contextPath}/changepassword" class="btn btn-primary btn-sm pull-right muted">Change Password</a>
+    <h1>Update Profile</h1>    
     <hr>	
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">First Name</label>
@@ -101,7 +102,7 @@
   
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-6">
-      <button class="btn btn-success" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
+      <button class="btn btn-success btn-sm" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
     </div>
   </div>
 </form>
@@ -122,3 +123,4 @@ $(function () {
 </script>
 
 <%@ include file="../common/footer.jsp"%>
+
