@@ -14,6 +14,7 @@ public interface ComplaintService {
 	List<Complaint> getAllComplaints();
 
 	List<Complaint> findByTitleOrDescription(String title, String description);
+	List<Complaint> findByAddress(String like);
 	
 	List<Complaint> findTopComplaints();
 

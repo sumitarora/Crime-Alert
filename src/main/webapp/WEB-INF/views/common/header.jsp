@@ -31,6 +31,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/nvd3/nv.d3.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/stylish-portfolio.css">
 	
 	<script src="${pageContext.request.contextPath}/resources/nvd3/lib/d3.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/nvd3/nv.d3.js"></script>
@@ -48,8 +49,8 @@
   	</style>
 </head>
 <body>
-
-   <div>
+   	<c:if test="${!hideMenu}">
+   	<div>
       <!-- Static navbar -->
       <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
@@ -63,6 +64,11 @@
             <a class="navbar-brand" href="${pageContext.request.contextPath}">Crime Alert</a>
           </div>
           <div class="navbar-collapse collapse">
+          	<ul class="nav navbar-nav navbar-left">
+				<sec:authorize access="isAuthenticated()">
+					<li><a id="btnHomeHeader" href="${pageContext.request.contextPath}/home">Home</a></li>
+				</sec:authorize>
+          	</ul>
             <ul class="nav navbar-nav navbar-right">
 			<sec:authorize access="isAnonymous()">
 				<li><a href="${pageContext.request.contextPath}/register">Register</a></li>
@@ -71,11 +77,11 @@
 			<sec:authorize access="isAuthenticated()">
 				<li><h4 style="color:#fff;">Welcome ${loggedInUser.firstName} ${loggedInUser.lastName}</h4></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a id="btnHomeHeader" href="${pageContext.request.contextPath}/home">Home</a></li>
+				<%-- <li><a id="btnHomeHeader" href="${pageContext.request.contextPath}/home">Home</a></li> --%>
 			    <li><a id="btnLogout" href="${pageContext.request.contextPath}/logout">Logout</a></li>			    
 			</sec:authorize>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-
+      </c:if>

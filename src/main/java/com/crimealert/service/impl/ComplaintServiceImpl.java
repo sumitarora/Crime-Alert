@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crimealert.model.Complaint;
+import com.crimealert.model.Crime;
 import com.crimealert.model.User;
 import com.crimealert.repository.ComplaintRepository;
 import com.crimealert.service.ComplaintService;
@@ -57,7 +58,14 @@ public class ComplaintServiceImpl implements ComplaintService {
 		String query = "select * from tbl_complaint where title like '%"+title+"%' or description like '%"+description+"%'";
 	    final Query q = em.createNativeQuery(query, Complaint.class);
 	    return q.getResultList();		
-	}	
+	}
+	
+	@Override
+	public List<Complaint> findByAddress(String like) {
+		String query = "select * from tbl_crime where address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%'";
+	    final Query q = em.createNativeQuery(query, Crime.class);
+	    return q.getResultList();		
+	}
 
 	@Override
 	public List<Complaint> findTopComplaints() {
