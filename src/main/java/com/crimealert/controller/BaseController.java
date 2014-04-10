@@ -25,21 +25,31 @@ public abstract class BaseController {
 		log.debug(request.getRequestURI());
 		
 		mav.addObject("complaintActive", "");
+		mav.addObject("dashboardActive", "");
 		mav.addObject("crimeActive", "");
 		mav.addObject("profileActive", "");
 		mav.addObject("homeActive", "");
+		mav.addObject("reportsActive", "");
+		mav.addObject("feedbackActive", "");
 		
 		if(request.getRequestURI().contains("complaint")) {
 			mav.addObject("complaintActive", "active");
+		} else if(request.getRequestURI().contains("dashboard")) {
+			mav.addObject("dashboardActive", "active");
 		} else if(request.getRequestURI().contains("profile")) {
 			mav.addObject("profileActive", "active");
 		} else if(request.getRequestURI().contains("home"))  {
 			mav.addObject("homeActive", "active");
 		} else if(request.getRequestURI().contains("user"))  {
 			mav.addObject("userActive", "active");
+		} else if(request.getRequestURI().contains("reports")) {
+			mav.addObject("reportsActive", "active");
+		} else if(request.getRequestURI().contains("feedback")) {
+			mav.addObject("feedbackActive", "active");			
 		} else if(request.getRequestURI().contains("crime")) {
 			mav.addObject("crimeActive", "active");
-		}		
+		} 
+		
 		mav.addObject("loggedInUser", getLoggedInUser());
 		return mav;
 	}

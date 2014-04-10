@@ -86,7 +86,7 @@
 	<div class="container" id="map-canvas"></div>
 	
 	<script type="text/javascript">
-        var locations = [
+       <%--  var locations = [
      	<%
     			List<Crime> crimes = (List<Crime>) request.getAttribute("crimes");
          		for(int i = 0; i < crimes.size() ; i++) {
@@ -143,50 +143,88 @@
         
         map.fitBounds(bounds);
       }
-      google.maps.event.addDomListener(window, 'load', initialize); 
+      google.maps.event.addDomListener(window, 'load', initialize);  --%>
+      var taxiData = [
+          //https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap
+          <%
+          List<Crime> crimes = (List<Crime>) request.getAttribute("crimes");
+          for(int i = 0; i < crimes.size() ; i++) 
+          {
+            Crime c = crimes.get(i);
+            out.print("new google.maps.LatLng("+c.getLatitude()+", "+c.getLongitude()+")");
+            //out.print("['"+c.getAddress()+", "+c.getLocality()+", "+c.getCountry()+"', "+c.getLatitude()+", "+c.getLongitude()+"," + (i+1) + "]");
+            if(i < crimes.size() -1) 
+            {
+              out.print(",");
+            }
+          }
+        %>
+        ];
       
-
-<%--       var map;
+      var map;
 
       function initialize() {
-    	  
-    	  var bounds = new google.maps.LatLngBounds();
-    	  
-          var mapOptions = {
-            zoom: 2,
-            center: new google.maps.LatLng(2.8, -187.3),
-            mapTypeId: google.maps.MapTypeId.TERRAIN            
-          };
-          
-          map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
-
-          var locations = [
-           	<%
-          			List<GeoSummary> summary = (List<GeoSummary>) request.getAttribute("summary");
-               		/* for(int i = 0; i < summary.size() ; i++) {
-               			Crime c = summary.get(i);
-               			out.print("['"+c.getAddress()+", "+c.getLocality()+", "+c.getCountry()+"', "+c.getLatitude()+", "+c.getLongitude()+"," + (i+1) + "]");
-               			if(i < summary.size() -1) {
-               				out.print(",");
-               			}
-               		} */
-              %>
-            ];
-          
-		for (var i = 0; i < results.features.length; i++) {
-    		  console.log(map, i);
-          var earthquake = results.features[i];
-          var coords = earthquake.geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            icon: getCircle(earthquake.properties.mag)
-          });
-        }        
+    	    
+          var bounds = new google.maps.LatLngBounds();
+        
+        var mapOptions = {
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+        };
+      
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      
+        var pointArray = new google.maps.MVCArray(taxiData);
+      
+        console.log(taxiData);
+        
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: pointArray
+        });
+        
+        for(var i=0; i <taxiData.length; i++) {
+          console.log(taxiData[i]);
+          bounds.extend(taxiData[i]);  
+        }   
         
         map.fitBounds(bounds);
-      } --%>
+        heatmap.setMap(map);
+      }
+      
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
+      
+      function changeGradient() {
+        var gradient = [
+          'rgba(0, 255, 255, 0)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 191, 255, 1)',
+          'rgba(0, 127, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+          'rgba(0, 0, 223, 1)',
+          'rgba(0, 0, 191, 1)',
+          'rgba(0, 0, 159, 1)',
+          'rgba(0, 0, 127, 1)',
+          'rgba(63, 0, 91, 1)',
+          'rgba(127, 0, 63, 1)',
+          'rgba(191, 0, 31, 1)',
+          'rgba(255, 0, 0, 1)'
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      }
+      
+      function changeRadius() {
+        heatmap.set('radius', heatmap.get('radius') ? null : 20);
+      }
+      
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+      }
+      
+      google.maps.event.addDomListener(window, 'load', initialize);
 
     /*  window.eqfeed_callback = function(results) {
     	  console.log(results);        
