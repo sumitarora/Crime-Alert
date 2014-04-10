@@ -50,6 +50,10 @@ public class ComplaintController extends BaseController{
 			complaint.setUser(getLoggedInUser());
 		}
 		
+		String[] location = complaint.getLocation().split(",");
+		complaint.setLatitude(location[0]);
+		complaint.setLongitude(location[1]);
+		
 		complaintService.saveComplaint(complaint);
 		return new ModelAndView(new RedirectView("list"));
 	}

@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -51,8 +52,11 @@ public class Complaint {
 	@Column(name="description", nullable=true)
 	private String description;
 	
-	@Column(name="location", nullable=false)
-	private String location;
+	@Column(name="latitude", nullable=false)
+	private String latitude;
+	
+	@Column(name="longitude", nullable=false)
+	private String longitude;
 
 	@Column(name="address", nullable=false)
 	private String address;
@@ -72,6 +76,8 @@ public class Complaint {
 	@Column(name="uploads", nullable=true)
 	private String uploads;
 	
+	@Transient
+	private String location;
 	
 	  @ManyToMany(cascade = {CascadeType.ALL})
 	  @JoinTable(name = "complaint_to_comments", 

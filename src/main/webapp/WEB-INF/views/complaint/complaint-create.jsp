@@ -40,7 +40,7 @@
   <div class="form-group">
     <label for="Address" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${complaint.address}" required>
+      <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="${complaint.address}">
     </div>
   </div>
   <div class="form-group">
@@ -79,8 +79,8 @@
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <div class="form-group">
     <div class="col-sm-6 col-sm-offset-2">
-          <button href="#" class="btn btn-success" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
-          <a href="${pageContext.request.contextPath}/complaint/list" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
+          <button href="#" class="btn btn-success btn-sm" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
+          <a href="${pageContext.request.contextPath}/complaint/list" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Cancel</a>
     </div>
   </div>
   
@@ -102,9 +102,9 @@ function getLocation()
 function showPosition(position)
 {
 	<c:choose>
-    <c:when test= "${complaint.location != null}">
-    	_location = "${complaint.location}";
-    </c:when>
+    <c:when test= "${complaint.latitude != null && complaint.longitude != null}">
+		_location = "${complaint.latitude},${complaint.longitude}";
+	</c:when>
 	<c:otherwise>
 		_location = position.coords.latitude + "," + position.coords.longitude;
 	</c:otherwise>
@@ -113,9 +113,17 @@ function showPosition(position)
 	var obj = {
 			map: "#address_map",
 			details: "form",
-			location: _location			
+			location: _location,
+			markerOptions: {
+			    draggable: true
+			  }
 		};
 	$("#address").geocomplete(obj);
+    $("#address").bind("geocode:dragged", function(event, latLng){
+    	console.log("after drag:" + latLng);
+        var loc = latLng.lat() + "," + latLng.lng();
+        $("#address").geocomplete("find", loc);
+    });	
 }
 
 function setUploadsText(uploads) {

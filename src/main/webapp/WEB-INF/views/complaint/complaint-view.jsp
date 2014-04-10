@@ -43,7 +43,7 @@
   <div class="form-group">
     <label for="Location_Name" class="col-sm-2 control-label">Geo-Location</label>
     <div class="col-sm-4">
-      ${complaint.location}
+      ${complaint.latitude},${complaint.longitude}
     </div>
   </div>    
 
@@ -107,7 +107,7 @@ var _location = null;
 
 function showPosition()
 {
-    _location = "${complaint.location}";
+    _location = "${complaint.latitude},${complaint.longitude}";
 	
 	var obj = {
 			map: "#address_map",
