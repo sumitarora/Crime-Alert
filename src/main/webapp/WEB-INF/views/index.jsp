@@ -153,10 +153,31 @@
     <div class="call-to-action">
         <div class="container">
             <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2>Search Crimes and Complaints</h2>
+                    <hr>
+                </div>
+            </div>        
+            <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-default">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-primary">Look at Me!</a>
+					<form class="row form-inline" role="form" method="get" action="${pageContext.request.contextPath}/search">
+					  <div class="form-group">
+					    <input class="form-control" type="text" id="criteria" placeholder="Search Criteria" name="criteria">
+					  </div>
+					  <div class="form-group">
+					    <select class="form-control" name="type" id="searchType">
+							<option value="cr">Crime</option>
+							<option value="co">Complaints</option>
+						</select>
+					  </div>
+					  <div class="form-group">
+					    <select class="form-control" name="by" id="searchBy">
+							<option value="t">Title & Description</option>
+							<option value="a">Address</option>
+						</select>
+					  </div>	  
+					  <button type="submit" class="btn btn-success btn-sm" id="btnSearch"><i class="fa fa-search"></i></button>
+					</form>
                 </div>
             </div>
         </div>

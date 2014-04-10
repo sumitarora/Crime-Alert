@@ -36,9 +36,6 @@ public class NavigationController extends BaseController {
 	CommentService commentService;
 
 	@Autowired
-	GenerateFakeData generateFakeData;
-	
-	@Autowired
 	UploadDataUtils uploadData;
 	
 	@RequestMapping(value={"/", "index"}, method=RequestMethod.GET)
