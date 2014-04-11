@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-item">
-                        <img class="img-circle" style="width:200px;height:200px;" src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg"></img>
+                        <img class="img-circle" style="width:200px;height:200px;" src="resources/img/satnam.jpg"></img>
                         <h4>Satnam Singh</h4>
                         <p>Need to know how magnets work? Our problem solving solutions team can help you identify problems and conduct exploratory research.</p>
                     </div>

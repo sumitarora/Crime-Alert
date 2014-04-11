@@ -7,14 +7,14 @@
 		<form action="${loginUrl}" method="post" role="form">
 			<h2>Please Sign In <small></small></h2>
 		    <c:if test="${param.error != null}">        
-		        <p>
+		        <div class="alert alert-danger">			
 		            Invalid username and password.
-		        </p>
+		        </div>
 		    </c:if>
 		    <c:if test="${param.logout != null}">       
-		        <p>
+		        <div class="alert alert-info">
 		            You have been logged out.
-		        </p>
+		        </div>
 		    </c:if>
 			<hr class="colorgraph">
 

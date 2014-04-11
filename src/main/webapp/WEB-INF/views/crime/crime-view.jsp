@@ -15,12 +15,7 @@
       ${crime.description}
     </div>
   </div>
-  <div class="form-group">
-    <label for="Location_Name" class="col-sm-2 control-label">Location Name</label>
-    <div class="col-sm-4">
-      ${crime.location}
-    </div>
-  </div>
+
   <div class="form-group">
     <label for="Address" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-4">
@@ -45,7 +40,13 @@
             ${crime.country}
         </div>
     </div>
-
+  <div class="form-group">
+    <label for="Location_Name" class="col-sm-2 control-label">Geo-Location</label>
+    <div class="col-sm-4">
+      ${complaint.latitude},${complaint.longitude}
+    </div>
+  </div>
+  
   <div class="form-group">
     <label for="Map" class="col-sm-2 control-label">Map</label>
     <div class="col-sm-6">

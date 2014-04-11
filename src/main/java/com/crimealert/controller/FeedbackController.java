@@ -72,7 +72,15 @@ public class FeedbackController extends BaseController {
 		feedback.setUser(getLoggedInUser());
 		feedback.setFeedbackDate(new java.sql.Date(new java.util.Date().getTime()));
 		feedbackService.saveFeedback(feedback);
-		
+		if(feedback != null) {
+			final Email email = new Email();
+			email.setSubject("New Feedback Added");
+			email.setTo("er.sumitarora@gmail.com");
+			email.setContent("New Feedback has been added by " + feedback.getUser().getFirstName() + " " + feedback.getUser().getLastName()
+					+ "<br/><br/> Title: " + feedback.getType()
+					+ "<br /><br />Thanks,<br />CencolShare Team");
+			mailgunEmail.sendEmail(email);			
+		}		
 		return new ModelAndView(new RedirectView(""));
 	}
 	

@@ -260,7 +260,24 @@
      <artifactId>hamcrest-library</artifactId>
      <version>1.2</version>
  </dependency>
- 
+
+<!-- Email Templating -->
+<dependency>
+	<groupId>org.apache.velocity</groupId>
+	<artifactId>velocity</artifactId>
+	<version>1.7</version>
+</dependency>
+<dependency>
+	<groupId>commons-lang</groupId>
+	<artifactId>commons-lang</artifactId>
+	<version>2.6</version>
+</dependency>
+<dependency>
+	<groupId>commons-collections</groupId>
+	<artifactId>commons-collections</artifactId>
+	<version>3.2.1</version>
+</dependency>
+		 
 <!-- Mailgun -->
 <dependency>
 	<groupId>com.sun.jersey</groupId>

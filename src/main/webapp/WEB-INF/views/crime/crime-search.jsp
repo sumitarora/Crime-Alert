@@ -53,18 +53,47 @@
 	<div class="text-center">
 		<br/>
     	<%
+    		String useopendata = request.getParameter("useopendata");
+    		if(useopendata != null && useopendata.equals("y")) {	
+		%>
+		<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+			<i class="fa fa-map-marker"></i> Use Open Data
+		</a>
+		<% } else { %>
+			<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&useopendata=y&list=hm&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-map-marker"></i> Don't Use Open Data
+			</a>
+		<% } 
     		String list = request.getParameter("list");
     		if(list != null && list.equals("m")) {	
 		%>
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-map-marker"></i> View Heat Map
+			</a>
 			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Map
-			</a>	
+			</a>				
 			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-list"></i> View List
 			</a>
 		<%	    			
+    		} else if(list != null && list.equals("hm")){
+    	%>
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-map-marker"></i> View Heat Map
+			</a>
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-map-marker"></i> View Map
+			</a>				
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-list"></i> View List
+			</a>    	
+    	<%
     		} else {
     	%>
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+				<i class="fa fa-map-marker"></i> View Heat Map
+			</a>    	
 			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Map
 			</a>	
@@ -86,7 +115,7 @@
 	<div class="container" id="map-canvas"></div>
 	
 	<script type="text/javascript">
-       <%--  var locations = [
+       var locations = [
      	<%
     			List<Crime> crimes = (List<Crime>) request.getAttribute("crimes");
          		for(int i = 0; i < crimes.size() ; i++) {
@@ -100,7 +129,7 @@
       ];
 
 
-       function createMarker(pos, t, m) {
+		function createMarker(pos, t, m) {
     	    var marker = new google.maps.Marker({       
     	        position: pos, 
     	        map: m,  // google.maps.Map 
@@ -143,7 +172,26 @@
         
         map.fitBounds(bounds);
       }
-      google.maps.event.addDomListener(window, 'load', initialize);  --%>
+      google.maps.event.addDomListener(window, 'load', initialize);
+      function getCircle(magnitude) {
+          return {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: 'red',
+            fillOpacity: .2,
+            scale: Math.pow(2, magnitude) / Math.PI,
+            strokeColor: 'white',
+            strokeWeight: .5
+          };
+        }
+        
+        google.maps.event.addDomListener(window, 'load', initialize);
+     </script>
+      
+  	<%
+		} else if(list != null && list.equals("hm")) {	
+	%>
+	<div class="container" id="map-canvas"></div>
+	<script type="text/javascript">
       var taxiData = [
           //https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap
           <%
@@ -152,7 +200,6 @@
           {
             Crime c = crimes.get(i);
             out.print("new google.maps.LatLng("+c.getLatitude()+", "+c.getLongitude()+")");
-            //out.print("['"+c.getAddress()+", "+c.getLocality()+", "+c.getCountry()+"', "+c.getLatitude()+", "+c.getLongitude()+"," + (i+1) + "]");
             if(i < crimes.size() -1) 
             {
               out.print(",");
@@ -222,35 +269,6 @@
       
       function changeOpacity() {
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-      }
-      
-      google.maps.event.addDomListener(window, 'load', initialize);
-
-    /*  window.eqfeed_callback = function(results) {
-    	  console.log(results);        
-    	  for (var i = 0; i < results.features.length; i++) {
-    		  console.log(map, i);
-          var earthquake = results.features[i];
-          var coords = earthquake.geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            icon: getCircle(earthquake.properties.mag)
-          });
-        }
-    	  
-      } */
-
-     function getCircle(magnitude) {
-        return {
-          path: google.maps.SymbolPath.CIRCLE,
-          fillColor: 'red',
-          fillOpacity: .2,
-          scale: Math.pow(2, magnitude) / Math.PI,
-          strokeColor: 'white',
-          strokeWeight: .5
-        };
       }
       
       google.maps.event.addDomListener(window, 'load', initialize);

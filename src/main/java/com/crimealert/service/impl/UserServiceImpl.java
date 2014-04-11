@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import com.crimealert.repository.UserRepository;
 import com.crimealert.service.UserService;
 import com.crimealert.util.GeneralUtils;
 import com.crimealert.util.MailgunEmail;
+import com.crimealert.util.TemplateUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,8 +34,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	MailgunEmail mailgunEmail;
 	
-	@Value("${domainPath}")
-	private String DOMAIN_PATH;
+	@Autowired
+	TemplateUtil templates;
+	
+	@Value("${baseUrl}")
+    private String BASE_URL;
 
 	@Override
 	public User getUserByEmail(String email) {
@@ -60,10 +65,15 @@ public class UserServiceImpl implements UserService {
 			// send verification email
 			final Email email = new Email();
 			email.setTo(u.getEmail());
-			email.setContent("Thank u for signing up. Please click the below link to verify your email. <br /><br />"
-					+ DOMAIN_PATH + "verify/" + u.getVerifyToken()
-					+ "<br /><br />Thanks,<br />CencolShare Team");
-			email.setSubject("Hey " + u.getFirstName() + ", Welcome to CrimeAlert!");
+			
+		     final VelocityContext context = new VelocityContext();
+		     context.put("sentTo", u.getEmail());
+		     context.put("title", "Welcome to CrimeAlert!");
+		     context.put("name", u.getFirstName() + " " + u.getLastName());
+		     context.put("verifyUrl", BASE_URL + "verify/" + u.getVerifyToken());
+
+		    email.setContent(templates.getEmailTemplate("templates/email-confirmation.vm", context));
+			email.setSubject("CrimeAlert - Account Created");
 			mailgunEmail.sendEmail(email);
 		}
 		
@@ -97,6 +107,22 @@ public class UserServiceImpl implements UserService {
 			user.setEnabled(true);
 			user.setVerifyToken("token processed");
 			updateUser(user);
+			
+			if (user != null) {
+				// send verification email
+				final Email email = new Email();
+				email.setTo(user.getEmail());
+				
+			     final VelocityContext context = new VelocityContext();
+			     context.put("sentTo", user.getEmail());
+			     context.put("title", "Thanks for Confirmation");
+			     context.put("name", user.getFirstName() + " " + user.getLastName());
+			     context.put("loginUrl", BASE_URL + "login");
+
+			    email.setContent(templates.getEmailTemplate("templates/email-verified.vm", context));
+				email.setSubject("CrimeAlert - Email Verified");
+				mailgunEmail.sendEmail(email);
+			}			
 			return user;
 		}
 	}
