@@ -55,13 +55,15 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User saveUser(User u) {
+	public User saveUser(User u, final Boolean create) {
 		u.setDateJoined(utils.getCurrentTimeStamp());
-		u.setEnabled(false);
-		u.setVerifyToken(utils.generateToken());		
+		if(create) {
+			u.setEnabled(false);
+			u.setVerifyToken(utils.generateToken());
+		}
 		u = userRepository.save(u);
 		
-		if (u != null) {
+		if (u != null && create.equals(Boolean.TRUE)) {
 			// send verification email
 			final Email email = new Email();
 			email.setTo(u.getEmail());

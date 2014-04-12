@@ -63,7 +63,7 @@ public class SecurityController extends BaseController {
 		u.setPassword(password);
 		u.setRole(Role.USER);
 		u.setPhoto("");
-		userService.saveUser(u);
+		userService.saveUser(u, true);
 		log.debug("inside register user");
 		return new ModelAndView(new RedirectView("login"));
 	}	
@@ -92,6 +92,7 @@ public class SecurityController extends BaseController {
 		log.debug("view user profile");
 		ModelAndView mav = new ModelAndView("user/profile");
 		mav.addObject("user", getLoggedInUser());
+		mav.addObject("profileUpdate", true);
 		return setSelectedMenu(mav);
     }
 
@@ -106,6 +107,7 @@ public class SecurityController extends BaseController {
 		}
 		
 		if(user.getFromAdmin() != null && user.getFromAdmin()) {
+			log.debug("updating user from admin");
 			User userToUpdate = userService.getUserById(user.getUserId());
 			user.setPassword(userToUpdate.getPassword());
 			user.setUserId(userToUpdate.getUserId());
@@ -125,7 +127,7 @@ public class SecurityController extends BaseController {
 					user.setRole(Role.USER);
 				}				
 			}
-			userService.saveUser(user);			
+			userService.saveUser(user, false);			
 			return new ModelAndView(new RedirectView("/crime-alert/user"));
 		}
 		
@@ -133,7 +135,7 @@ public class SecurityController extends BaseController {
 		user.setPassword(getLoggedInUser().getPassword());
 		user.setUserId(getLoggedInUser().getUserId());
 		user.setRole(getLoggedInUser().getRole());
-		userService.saveUser(user);
+		userService.saveUser(user, false);
 		
 		return new ModelAndView(new RedirectView(""));
     }

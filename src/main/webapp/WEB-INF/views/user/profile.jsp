@@ -28,8 +28,8 @@
       <input type="email" class="form-control" id="email" placeholder="Email" value="${user.email}" name="email" required="true">
     </div>
   </div>
-  
-  <c:if test="${loggedInUser.role.toString().equals(\"ADMIN\")}">
+
+  <c:if test="${!profileUpdate}">
 	  <div class="form-group">
 	    <label for="description" class="col-sm-2 control-label">Enabled</label>
 	    <div class="col-sm-4">
@@ -103,6 +103,9 @@
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-6">
       <button class="btn btn-success btn-sm" id="btnSuccess"><i class="fa fa-floppy-o"></i> Save</button>
+      <c:if test="${!profileUpdate}">
+      	<a href="${pageContext.request.contextPath}/user" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Cancel</a>
+      </c:if>
     </div>
   </div>
 </form>

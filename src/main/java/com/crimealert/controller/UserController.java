@@ -54,7 +54,7 @@ public class UserController extends BaseController {
 			user.setPhoto("https://s3.amazonaws.com/crime-alert/1394710047317.png");
 		}		
 		
-		userService.saveUser(user);
+		userService.saveUser(user, true);
 		return new ModelAndView(new RedirectView(""));
 	}
 	
