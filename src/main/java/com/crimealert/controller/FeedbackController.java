@@ -8,6 +8,7 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import com.crimealert.model.Feedback;
 import com.crimealert.model.User;
 import com.crimealert.service.FeedbackService;
 import com.crimealert.util.MailgunEmail;
+import com.crimealert.util.TemplateUtil;
 
 
 @Controller
@@ -38,8 +40,8 @@ public class FeedbackController extends BaseController {
 	@Autowired
 	MailgunEmail mailgunEmail;
 	
-	@Value("${domainPath}")
-	private String DOMAIN_PATH;
+	@Autowired
+	TemplateUtil templates;
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public ModelAndView list(){
@@ -74,12 +76,17 @@ public class FeedbackController extends BaseController {
 		feedbackService.saveFeedback(feedback);
 		if(feedback != null) {
 			final Email email = new Email();
-			email.setSubject("New Feedback Added");
 			email.setTo("er.sumitarora@gmail.com");
-			email.setContent("New Feedback has been added by " + feedback.getUser().getFirstName() + " " + feedback.getUser().getLastName()
-					+ "<br/><br/> Title: " + feedback.getType()
-					+ "<br /><br />Thanks,<br />CencolShare Team");
-			mailgunEmail.sendEmail(email);			
+			
+		     final VelocityContext context = new VelocityContext();
+		     context.put("sentTo", "er.sumitarora@gmail.com");
+		     context.put("title", "New Feedback Added");
+		     context.put("user", feedback.getUser().getFirstName() + " " + feedback.getUser().getLastName());
+		     context.put("feedback", feedback.getType());
+
+		    email.setContent(templates.getEmailTemplate("templates/feedback-admin.vm", context));
+			email.setSubject("CrimeAlert - New Feedback Added");
+			mailgunEmail.sendEmail(email);
 		}		
 		return new ModelAndView(new RedirectView(""));
 	}
@@ -130,11 +137,19 @@ public class FeedbackController extends BaseController {
 		feedbackService.saveFeedback(feedback);
 
 		if(feedback != null) {
+
 			final Email email = new Email();
-			email.setSubject("New Comment Added");
 			email.setTo(feedback.getUser().getEmail());
-			email.setContent("New Comment added on the feedback " + feedback.getType() + "<br /><br />Thanks,<br />CencolShare Team");
-			mailgunEmail.sendEmail(email);			
+			
+		     final VelocityContext context = new VelocityContext();
+		     context.put("sentTo", feedback.getUser().getEmail());
+		     context.put("title", "New Comment Added");
+		     context.put("user", feedback.getUser().getFirstName() + " " + feedback.getUser().getLastName());
+		     context.put("feedback", feedback.getType());
+
+		    email.setContent(templates.getEmailTemplate("templates/feedback-comment.vm", context));
+			email.setSubject("CrimeAlert - New Comment Added");
+			mailgunEmail.sendEmail(email);
 		}
 
 		result.put("result", "success");
@@ -149,7 +164,7 @@ public class FeedbackController extends BaseController {
 		if(feedback.getUser().getUserId().equals(user.getUserId())) {
 			feedbackService.deleteFeedback(id);
 		}
-		return new ModelAndView(new RedirectView("/crime-alert/feedback"));
+		return new ModelAndView(new RedirectView(DOMAIN_PATH + "/feedback"));
 	}	
 	
 }

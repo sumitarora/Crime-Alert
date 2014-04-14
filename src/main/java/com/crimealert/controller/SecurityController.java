@@ -45,6 +45,48 @@ public class SecurityController extends BaseController {
 		return new ModelAndView("register");
 	}
 	
+	@RequestMapping(value="/forgotpassword", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView forgotPassword() {
+		log.debug("inside forgot password");
+		if(request.getMethod().equals(RequestMethod.GET.toString())) {
+			return new ModelAndView("forgot-password");
+		} else {
+			final User user = userService.getUserByEmail(request.getParameter("email"));
+			if(user == null) {
+				return new ModelAndView("forgot-password");
+			}
+			userService.generateForgotPasswordToken(user);
+			return new ModelAndView("forgot-password-success");
+		}
+		
+	}	
+	
+	@RequestMapping(value="/resetforgotpassword/{token}", method=RequestMethod.GET)
+	public ModelAndView resetPassword(@PathVariable String token) {
+		log.debug("inside reset forgot password: {}", token);
+		ModelAndView mav = new ModelAndView("reset-password");
+		mav.addObject("token", token);
+		return mav;
+	}
+	
+	@RequestMapping(value="/changeforgotpassword", method=RequestMethod.POST)
+	public ModelAndView changeForgotPassword() {
+		
+		String token = request.getParameter("token");
+		String newPassword = request.getParameter("newPassword");
+		
+		User user = userService.findByForgotPasswordToken(token);
+		user.setPassword(newPassword);
+		user.setForgotPasswordToken(null);
+		user = userService.updateUser(user);
+
+		ModelAndView mav = new ModelAndView("reset-password");
+		if(user != null) {
+			mav.addObject("changed", true);
+		}				
+		return mav;
+	}
+	
 	@RequestMapping(value="/registeruser", method=RequestMethod.POST)
 	public ModelAndView registerUser() {
 		final String fname = request.getParameter("first_name");
@@ -65,7 +107,8 @@ public class SecurityController extends BaseController {
 		u.setPhoto("");
 		userService.saveUser(u, true);
 		log.debug("inside register user");
-		return new ModelAndView(new RedirectView("login"));
+		//return new ModelAndView(new RedirectView("login"));
+		return new ModelAndView("register_success");
 	}	
 	
 	@RequestMapping(value="/accessdenied", method=RequestMethod.GET)
@@ -128,7 +171,7 @@ public class SecurityController extends BaseController {
 				}				
 			}
 			userService.saveUser(user, false);			
-			return new ModelAndView(new RedirectView("/crime-alert/user"));
+			return new ModelAndView(new RedirectView(DOMAIN_PATH + "/user"));
 		}
 		
 		user.setEnabled(getLoggedInUser().getEnabled());

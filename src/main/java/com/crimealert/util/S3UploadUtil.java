@@ -17,9 +17,9 @@ import com.amazonaws.util.StringUtils;
 
 public class S3UploadUtil {
 
-  String accessKey = "acesskey";
-  String secretKey = "accesskey";
-  String bucketName = "bucketname";
+  String accessKey = "AKIAJSMGS4DKHNXMGD4A";
+  String secretKey = "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";
+  String bucketName = "crime-alert";
   
   protected AWSCredentials credentials;
   protected AmazonS3 connection;

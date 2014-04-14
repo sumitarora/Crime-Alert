@@ -50,6 +50,15 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public User findByForgotPasswordToken(String token) {
+		List<User> users = userRepository.findByForgotPasswordToken(token);
+		if(users.size() != 0) {
+			return users.get(0);
+		}
+		return null;
+	}	
+	
+	@Override
 	public User updateUser(final User u) {
 		return userRepository.save(u);
 	}
@@ -127,5 +136,28 @@ public class UserServiceImpl implements UserService {
 			}			
 			return user;
 		}
+	}
+
+	@Override
+	public User generateForgotPasswordToken(User user) {
+		
+		user.setForgotPasswordToken(utils.generateToken());
+		user = userRepository.save(user);
+		if (user != null) {
+			// send verification email
+			final Email email = new Email();
+			email.setTo(user.getEmail());
+			
+		     final VelocityContext context = new VelocityContext();
+		     context.put("sentTo", user.getEmail());
+		     context.put("title", "Forgot Your Password");
+		     context.put("name", user.getFirstName() + " " + user.getLastName());
+		     context.put("resetUrl", BASE_URL + "resetforgotpassword/" + user.getForgotPasswordToken());
+
+		    email.setContent(templates.getEmailTemplate("templates/forgot-password.vm", context));
+			email.setSubject("CrimeAlert - Forgot Password");
+			mailgunEmail.sendEmail(email);
+		}
+		return user;
 	}
 }

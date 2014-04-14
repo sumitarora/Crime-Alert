@@ -83,7 +83,7 @@ public class ComplaintController extends BaseController{
 		if(complaint.getUser().getUserId().equals(user.getUserId())) {
 			complaintService.deleteComplaint(complaint.getComplaintId());
 		}
-		return new ModelAndView(new RedirectView("/crime-alert/complaint/list"));
+		return new ModelAndView(new RedirectView(DOMAIN_PATH + "/complaint/list"));
 	}
 	
 	@RequestMapping(value= "/list", method=RequestMethod.GET )

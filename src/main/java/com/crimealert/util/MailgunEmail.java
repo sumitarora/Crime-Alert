@@ -55,7 +55,9 @@ public class MailgunEmail {
 	    formData.add("html", email.getContent());
 	    log.debug("sending email {} to {}" + email.getSubject(), email.getTo());
 	    
-	    return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, formData);
+	    ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, formData);
+	    log.debug("email sent response: {}", response);
+	    return response;
 		
 	}	
 

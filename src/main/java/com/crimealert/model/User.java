@@ -67,6 +67,9 @@ public class User {
 	
 	@Column(name="verification_token", nullable=true)
 	private String verifyToken;
+	
+	@Column(name="forgot_password_token", nullable=true)
+	private String forgotPasswordToken;
 
 	@Column(name="date_joined", nullable=true)
 	private String dateJoined;

@@ -31,6 +31,11 @@
 				<div class="col-xs-12 col-md-6"><a id="btnRegister" href="${pageContext.request.contextPath}/register" class="btn btn-primary btn-block btn-lg">Register</a></div>
 			</div>
 		</form>
+		<br/><br/>
+		<div class="col-md-12 text-center">
+			<a href="forgotpassword" class="btn btn-info btn-block btn-lg">Forgot Password</a>
+		</div>
+		
 	</div>
 </div>
 </div>

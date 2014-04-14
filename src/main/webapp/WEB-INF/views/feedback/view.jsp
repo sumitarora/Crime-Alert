@@ -51,7 +51,7 @@ function addComment() {
 			feedbackId:"${feedback.feedbackId}",
 			description: comment
 	};
-	$.post( "http://localhost:8080/crime-alert/feedback/comment",obj, function( data ) {
+	$.post( "${pageContext.request.contextPath}/feedback/comment",obj, function( data ) {
 		 console.log(data);
 		 if(data.result === "success") {
 			 window.location.reload();

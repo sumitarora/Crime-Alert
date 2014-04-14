@@ -146,7 +146,7 @@ function addComment() {
 			crimeId:"${crime.crimeId}",
 			description: comment
 	};
-	$.post( "http://localhost:8080/crime-alert/crime/comment",obj, function( data ) {
+	$.post( "${pageContext.request.contextPath}/crime/comment",obj, function( data ) {
 		 console.log(data);
 		 if(data.result === "success") {
 			 window.location.reload();

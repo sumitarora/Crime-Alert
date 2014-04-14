@@ -83,7 +83,7 @@ public class CrimeController extends BaseController{
 		if(crime.getUser().getUserId().equals(user.getUserId())) {
 			crimeService.deleteCrime(crime.getCrimeId());
 		}
-		return new ModelAndView(new RedirectView("/crime-alert/crime/list"));
+		return new ModelAndView(new RedirectView(DOMAIN_PATH + "/crime/list"));
 	}
 	
 	@RequestMapping(value= "/list", method=RequestMethod.GET )
