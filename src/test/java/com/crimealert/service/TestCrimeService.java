@@ -30,7 +30,7 @@ public class TestCrimeService extends BaseTestCase {
 	
 	@Test
 	public void testSaveCrime() {
-		final User user = userService.saveUser(ddg.createUser());
+		final User user = userService.saveUser(ddg.createUser(), false);
 		assertTrue(user.getUserId() > 0);
 		
 		Crime crime = ddg.createCrime();

@@ -2,7 +2,7 @@
    <!-- Full Page Image Header Area -->
     <div id="top" class="header">
         <div class="vert-text">
-            <h1>Crime Alert</h1>
+            <h1>Crime Vigilant</h1>
             <h3>
                 <em>Report</em> All crimes and complaints,
                 <em>You</em> Make Locality Better</h3>
@@ -24,8 +24,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <h2>Crime alert offers a 24/7 online facility to report a crime/complaint</h2>
-                    <p class="lead">Reporting a crime or complaint made easy with Crime-Alert. Crime hotspots in Canada revealed. <a href="register">Register to view!!!</a></p>
+                    <h2>Crime vigilant offers a 24/7 online facility to report a crime/complaint</h2>
+                    <p class="lead">Reporting a crime or complaint made easy with Crime Vigilant. Crime hotspots in Canada revealed. <br/><br/><a href="register">Register to view!!!</a></p>
                 </div>
             </div>
         </div>
@@ -47,21 +47,21 @@
                         <!-- <i class="service-icon fa fa-rocket"></i> -->
                         <img class="img-circle" src="http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/1/000/1a2/01b/3063a10.jpg" />
                         <h4>Sumit Arora</h4>
-                        <p>Sumit is currently finishing up his Masters in Computer Science. He loves to code, having worked for JP Morgan, Cognizant, and Net Solutions. Sumit's major interest lies in data visualization. Karma is the lead influence in his life.</p>
+                        <!-- <p>Sumit is currently finishing up his Masters in Computer Science. He loves to code, having worked for JP Morgan, Cognizant, and Net Solutions. Sumit's major interest lies in data visualization. Karma is the lead influence in his life.</p> -->
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-item">
                         <img class="img-circle" style="width:200px;height:200px;" src="resources/img/pic.jpg"></img>
                         <h4>Kiranjot Jheetey</h4>
-                        <p>Developer in Java, HTML5, CSS , Kiran loves to try out new things.Currently gaining a degree in Softwares, she aims to be an independent and freelance developer.</p>
+                        <!-- <p>Developer in Java, HTML5, CSS , Kiran loves to try out new things.Currently gaining a degree in Softwares, she aims to be an independent and freelance developer.</p> -->
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-item">
                         <img class="img-circle" style="width:200px;height:200px;" alt="" src="https://lh3.googleusercontent.com/-VPB3QCh0idM/UyIkId74rCI/AAAAAAAAAVQ/K2TLr6GkBjE/s283-no/DSC00821.JPG">
                         <h4>Jagroop Singh Pandher</h4>
-                        <p>Planning a time travel trip to the middle ages? Preserve the space time continuum by blending in with period accurate armor and weapons.</p>
+                        <!-- <p>Planning a time travel trip to the middle ages? Preserve the space time continuum by blending in with period accurate armor and weapons.</p> -->
                     </div>
                 </div>
             </div>
@@ -70,21 +70,21 @@
                     <div class="service-item">
                         <img class="img-circle" style="width:200px;height:200px;" src="resources/img/asd.jpg"></img>
                         <h4>Deepanshu Dhir</h4>
-                        <p>Deepanshu is currently pursuing his degree in Softwares. Having worked in Java and Android project,he is now shifting to Databases and JQuery to become an independent developer. Impossible Says I M POSSIBLE</p>
+                        <!-- <p>Deepanshu is currently pursuing his degree in Softwares. Having worked in Java and Android project,he is now shifting to Databases and JQuery to become an independent developer. Impossible Says I M POSSIBLE</p> -->
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-item">
                         <img class="img-circle" style="width:200px;height:200px;" src="resources/img/satnam.jpg"></img>
                         <h4>Satnam Singh</h4>
-                        <p>Need to know how magnets work? Our problem solving solutions team can help you identify problems and conduct exploratory research.</p>
+                        <!-- <p>Need to know how magnets work? Our problem solving solutions team can help you identify problems and conduct exploratory research.</p> -->
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-item">
                         <img class="img-circle" style="width:200px;height:200px;" alt=""  src="https://lh4.googleusercontent.com/-BmGtNXIX6Cs/U0Xi1mvEliI/AAAAAAAAANI/YfvXUW4pQuE/s512/Untitled.jpg">
                         <h4>Gurnek Singh Sandhu</h4>
-                        <p>Gurnek is pursuing Diploma in Health Informatics, completed B. Tech in Computer Science in 2012. Have worked for Crezone Tech. Hard work in life is forever like Diamond.</p>
+                        <!-- <p>Gurnek is pursuing Diploma in Health Informatics, completed B. Tech in Computer Science in 2012. Have worked for Crezone Tech. Hard work in life is forever like Diamond.</p> -->
                     </div>
                 </div>
             </div>            

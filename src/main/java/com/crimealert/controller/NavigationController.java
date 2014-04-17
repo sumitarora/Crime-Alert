@@ -85,15 +85,21 @@ public class NavigationController extends BaseController {
 		final String type = request.getParameter("type");
 		final String criteria = request.getParameter("criteria");
 		final String by = request.getParameter("by");
-		log.debug("searching for {} - {}", type, criteria);
+		final String useopendata = request.getParameter("useopendata");
+		Boolean opendata = true;
+		if(useopendata != null && useopendata.equals("y")) {
+			opendata = false;
+		}
+		
+		log.debug("searching for {} - {} - {}", type, criteria, opendata);
 		
 		if(type.equals("cr")) {
 			final ModelAndView mav = new ModelAndView("crime/crime-search");
 			if(by.equals("t")) {
-				final List<Crime> crimes = crimeService.findByTitleOrDescription(criteria, criteria);
+				final List<Crime> crimes = crimeService.findByTitleOrDescription(criteria, criteria, opendata);
 				mav.addObject("crimes", crimes);
 			} else {
-				final List<Crime> crimes = crimeService.findByAddress(criteria);
+				final List<Crime> crimes = crimeService.findByAddress(criteria, opendata);
 				mav.addObject("crimes", crimes);				
 			}
 			mav.addObject("summary", reportService.getLocationSummary(true));
@@ -101,10 +107,10 @@ public class NavigationController extends BaseController {
 		} else {
 			final ModelAndView mav = new ModelAndView("complaint/complaint-search");
 			if(by.equals("t")) {
-				final List<Complaint> complaints = complaintService.findByTitleOrDescription(criteria, criteria);
+				final List<Complaint> complaints = complaintService.findByTitleOrDescription(criteria, criteria, opendata);
 				mav.addObject("complaints", complaints);
 			} else {
-				final List<Complaint> complaints = complaintService.findByAddress(criteria);
+				final List<Complaint> complaints = complaintService.findByAddress(criteria, opendata);
 				mav.addObject("complaints", complaints);
 			}						
 			return setSelectedMenu(mav);
@@ -113,6 +119,11 @@ public class NavigationController extends BaseController {
 
 	@RequestMapping(value="/generate", method=RequestMethod.GET)
 	public String generateData() {
+		try {
+			uploadData.uploadData();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		//generateFakeData.generateData();
 		return null;
 	}

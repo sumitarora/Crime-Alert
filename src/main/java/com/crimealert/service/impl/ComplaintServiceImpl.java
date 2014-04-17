@@ -54,15 +54,15 @@ public class ComplaintServiceImpl implements ComplaintService {
 	}
 	
 	@Override
-	public List<Complaint> findByTitleOrDescription(String title, String description) {
-		String query = "select * from tbl_complaint where title like '%"+title+"%' or description like '%"+description+"%'";
+	public List<Complaint> findByTitleOrDescription(String title, String description, Boolean useopendata) {
+		String query = "select * from tbl_complaint where (title like '%"+title+"%' or description like '%"+description+"%') and opendata = " + useopendata;
 	    final Query q = em.createNativeQuery(query, Complaint.class);
 	    return q.getResultList();		
 	}
 	
 	@Override
-	public List<Complaint> findByAddress(String like) {
-		String query = "select * from tbl_crime where address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%'";
+	public List<Complaint> findByAddress(String like, Boolean useopendata) {
+		String query = "select * from tbl_crime where (address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%') and opendata = " + useopendata;
 	    final Query q = em.createNativeQuery(query, Crime.class);
 	    return q.getResultList();		
 	}

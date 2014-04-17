@@ -75,6 +75,9 @@ public class Crime {
 	@Transient
 	private String location;
 	
+	@Column(name="opendata", nullable=true)
+	private Boolean opendata;
+	
 	@Column(name="uploads", nullable=true)
 	private String uploads;
 	

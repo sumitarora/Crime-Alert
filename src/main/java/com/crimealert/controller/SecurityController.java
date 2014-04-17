@@ -74,16 +74,20 @@ public class SecurityController extends BaseController {
 		
 		String token = request.getParameter("token");
 		String newPassword = request.getParameter("newPassword");
+		ModelAndView mav = new ModelAndView("reset-password");
 		
 		User user = userService.findByForgotPasswordToken(token);
-		user.setPassword(newPassword);
-		user.setForgotPasswordToken(null);
-		user = userService.updateUser(user);
-
-		ModelAndView mav = new ModelAndView("reset-password");
+		
 		if(user != null) {
-			mav.addObject("changed", true);
-		}				
+			user.setPassword(newPassword);
+			user.setForgotPasswordToken(null);
+			user = userService.saveUser(user, false);
+			if(user != null) {
+				mav.addObject("changed", true);
+			}
+		} else {
+			mav.addObject("usernotfound", true);
+		}	
 		return mav;
 	}
 	

@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-	<title>Crime-Alert Web Application</title>
+	<title>Crime Vigilant</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<%-- <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"> --%>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -61,7 +61,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}">Crime Alert</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}">Crime Vigilant</a>
           </div>
           <div class="navbar-collapse collapse">
           	<ul class="nav navbar-nav navbar-left">

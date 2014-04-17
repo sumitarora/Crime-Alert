@@ -56,7 +56,7 @@ svg {
 	      <select id="cmbGraphType" class="form-control" onchange="displayChart()">
 	      	<option value="b">Bar</option>
 	      	<option value="p">Pie</option>
-	      	<option value="s">Scatter</option>
+	      	<!-- <option value="s">Scatter</option> -->
 	      </select>
 	    </div>
 	 </div>	 	

@@ -15,6 +15,11 @@
 					Password Changed
 				</div>
 			</c:if>
+			<c:if test="${usernotfound}">
+				<div class="alert alert-danger">
+					Invalid Token or Token already used
+				</div>
+			</c:if>				
 		</div>
 
 		<input type="hidden" value="${token}" name="token" />

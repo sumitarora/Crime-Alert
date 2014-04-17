@@ -13,8 +13,8 @@ public interface ComplaintService {
 	List<Complaint> getAllComplaints(User user);
 	List<Complaint> getAllComplaints();
 
-	List<Complaint> findByTitleOrDescription(String title, String description);
-	List<Complaint> findByAddress(String like);
+	List<Complaint> findByTitleOrDescription(String title, String description, Boolean useopendata);
+	List<Complaint> findByAddress(String like, Boolean useopendata);
 	
 	List<Complaint> findTopComplaints();
 

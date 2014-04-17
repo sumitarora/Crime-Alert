@@ -12,8 +12,8 @@ public interface CrimeService {
 	List<Crime> getAllCrimes(User user);
 	List<Crime> getAllCrimes();
 	
-	List<Crime> findByTitleOrDescription(String title, String description);
-	List<Crime> findByAddress(String like);
+	List<Crime> findByTitleOrDescription(String title, String description, Boolean useopendata);
+	List<Crime> findByAddress(String like, Boolean useopendata);
 	
 	List<Crime> findTopCrimes();
 }

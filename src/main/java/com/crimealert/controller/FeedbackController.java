@@ -85,7 +85,7 @@ public class FeedbackController extends BaseController {
 		     context.put("feedback", feedback.getType());
 
 		    email.setContent(templates.getEmailTemplate("templates/feedback-admin.vm", context));
-			email.setSubject("CrimeAlert - New Feedback Added");
+			email.setSubject("Crime Vigilant - New Feedback Added");
 			mailgunEmail.sendEmail(email);
 		}		
 		return new ModelAndView(new RedirectView(""));
@@ -148,7 +148,7 @@ public class FeedbackController extends BaseController {
 		     context.put("feedback", feedback.getType());
 
 		    email.setContent(templates.getEmailTemplate("templates/feedback-comment.vm", context));
-			email.setSubject("CrimeAlert - New Comment Added");
+			email.setSubject("Crime Vigilant - New Comment Added");
 			mailgunEmail.sendEmail(email);
 		}
 

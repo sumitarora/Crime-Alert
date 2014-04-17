@@ -43,7 +43,8 @@ public class CrimeController extends BaseController{
 		log.debug("inside Crime save: {}", crime.getCrimeId());
 		
 		crime.setCrimeDate(new Date(new java.util.Date().getTime()));
-		crime.setMap("map");		
+		crime.setMap("map");
+		crime.setOpendata(false);
 		
 		if(request.getParameter("userId") != null && !request.getParameter("userId").equals("")) {
 			crime.setUser(userService.getUserById(Integer.parseInt(request.getParameter("userId"))));

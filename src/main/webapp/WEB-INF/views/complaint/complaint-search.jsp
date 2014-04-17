@@ -67,37 +67,37 @@
     		String list = request.getParameter("list");
     		if(list != null && list.equals("m")) {	
 		%>
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Heat Map
 			</a>
-			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Map
 			</a>				
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-list"></i> View List
 			</a>
 		<%	    			
     		} else if(list != null && list.equals("hm")){
     	%>
-			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Heat Map
 			</a>
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Map
 			</a>				
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-list"></i> View List
 			</a>    	
     	<%
     		} else {
     	%>
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=hm&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Heat Map
 			</a>    	
-			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=m&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-map-marker"></i> View Map
 			</a>	
-			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
+			<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/search?criteria=<%= request.getParameter("criteria") %>&useopendata=<%= request.getParameter("useopendata") %>&type=<%= request.getParameter("type") %>&list=l&by=<%= request.getParameter("by") %>">
 				<i class="fa fa-list"></i> View List
 			</a>
 		<%	    			

@@ -34,13 +34,13 @@ public class UploadDataUtils {
 		log.debug("inside file upload");		
 	}
 	
-	public void uploadData() {
-		try (BufferedReader br = new BufferedReader(new FileReader("/Users/sarora/Desktop/temp/crime_2010.csv")))
+	public void uploadData() throws InterruptedException {
+		try (BufferedReader br = new BufferedReader(new FileReader("/Users/sarora/Desktop/temp/crime_2011.csv")))
 		{
 			String sCurrentLine; 
 			final User user = userService.getUserByEmail("admin@gmail.com");
 			while ((sCurrentLine = br.readLine()) != null) {
-				
+				Thread.sleep(100);
 				String[] values = sCurrentLine.split(",");
 			
 				try {
@@ -52,6 +52,7 @@ public class UploadDataUtils {
 					log.debug("response: {}", actualObj);
 					
 					Crime c = new Crime();
+					c.setOpendata(true);
 					c.setAddress(actualObj.get("results").get(0).get("formatted_address").textValue());
 					c.setAdministrative_area_level_1(actualObj.get("results").get(0).get("address_components").get(4).get("long_name").textValue());
 					c.setCountry(actualObj.get("results").get(0).get("address_components").get(5).get("long_name").textValue());

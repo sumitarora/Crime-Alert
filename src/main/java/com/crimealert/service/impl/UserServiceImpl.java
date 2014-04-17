@@ -79,12 +79,12 @@ public class UserServiceImpl implements UserService {
 			
 		     final VelocityContext context = new VelocityContext();
 		     context.put("sentTo", u.getEmail());
-		     context.put("title", "Welcome to CrimeAlert!");
+		     context.put("title", "Welcome to Crime Vigilant!");
 		     context.put("name", u.getFirstName() + " " + u.getLastName());
 		     context.put("verifyUrl", BASE_URL + "verify/" + u.getVerifyToken());
 
 		    email.setContent(templates.getEmailTemplate("templates/email-confirmation.vm", context));
-			email.setSubject("CrimeAlert - Account Created");
+			email.setSubject("Crime Vigilant - Account Created");
 			mailgunEmail.sendEmail(email);
 		}
 		
@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService {
 			     context.put("loginUrl", BASE_URL + "login");
 
 			    email.setContent(templates.getEmailTemplate("templates/email-verified.vm", context));
-				email.setSubject("CrimeAlert - Email Verified");
+				email.setSubject("Crime Vigilant - Email Verified");
 				mailgunEmail.sendEmail(email);
 			}			
 			return user;
@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
 		     context.put("resetUrl", BASE_URL + "resetforgotpassword/" + user.getForgotPasswordToken());
 
 		    email.setContent(templates.getEmailTemplate("templates/forgot-password.vm", context));
-			email.setSubject("CrimeAlert - Forgot Password");
+			email.setSubject("Crime Vigilant - Forgot Password");
 			mailgunEmail.sendEmail(email);
 		}
 		return user;

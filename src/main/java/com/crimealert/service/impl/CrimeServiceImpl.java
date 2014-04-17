@@ -51,15 +51,15 @@ public class CrimeServiceImpl implements CrimeService {
 	}
 	
 	@Override
-	public List<Crime> findByTitleOrDescription(String title, String description) {
-		String query = "select * from tbl_crime where title like '%"+title+"%' or description like '%"+description+"%'";
+	public List<Crime> findByTitleOrDescription(String title, String description, Boolean useopendata) {
+		String query = "select * from tbl_crime where (title like '%"+title+"%' or description like '%"+description+"%') and opendata = " + useopendata;
 	    final Query q = em.createNativeQuery(query, Crime.class);
 	    return q.getResultList();		
 	}
 	
 	@Override
-	public List<Crime> findByAddress(String like) {
-		String query = "select * from tbl_crime where address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%'";
+	public List<Crime> findByAddress(String like, Boolean useopendata) {
+		String query = "select * from tbl_crime where (address like '%"+like+"%' or country like '%"+like+"%' or locality like '%"+like+"%') and opendata = " + useopendata;
 	    final Query q = em.createNativeQuery(query, Crime.class);
 	    return q.getResultList();		
 	}
