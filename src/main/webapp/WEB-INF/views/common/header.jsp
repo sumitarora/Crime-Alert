@@ -36,6 +36,8 @@
 	<script src="${pageContext.request.contextPath}/resources/nvd3/lib/d3.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/nvd3/nv.d3.js"></script>
 	
+	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
+	
 	<script src="http://googlemapapitutorial.com/js/custom_map_tooltip.js" type="text/javascript"></script>
     <!-- <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqedN_hmIAD2x_Dahwa6VGIwPyAd8S-Ew&sensor=false">

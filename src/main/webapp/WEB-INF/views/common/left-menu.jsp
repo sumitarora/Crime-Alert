@@ -8,6 +8,7 @@
 	  <li class="${reportsActive}"><a id="btnReports" href="${pageContext.request.contextPath}/reports">Reports</a></li>
 	  <li class="${feedbackActive}"><a id="btnFeedback" href="${pageContext.request.contextPath}/feedback">Feedback</a></li>
 	  <c:if test="${loggedInUser.role.toString().equals(\"ADMIN\")}">
+	  	<li class="${newsActive}"><a id="btnNews" href="${pageContext.request.contextPath}/news">News</a></li>
 	  	<li class="${userActive}"><a id="btnUsers" href="${pageContext.request.contextPath}/user">Users</a></li>
 	  </c:if>	  		  
 	</ul>

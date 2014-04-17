@@ -12,10 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crimealert.model.Complaint;
 import com.crimealert.model.Crime;
+import com.crimealert.model.News;
 import com.crimealert.model.User;
 import com.crimealert.service.CommentService;
 import com.crimealert.service.ComplaintService;
 import com.crimealert.service.CrimeService;
+import com.crimealert.service.NewsService;
 import com.crimealert.service.ReportService;
 import com.crimealert.util.UploadDataUtils;
 
@@ -36,6 +38,9 @@ public class NavigationController extends BaseController {
 	CommentService commentService;
 
 	@Autowired
+	NewsService newsService;
+	
+	@Autowired
 	UploadDataUtils uploadData;
 	
 	@RequestMapping(value={"/", "index"}, method=RequestMethod.GET)
@@ -50,6 +55,7 @@ public class NavigationController extends BaseController {
 	public ModelAndView dashboard() {
 		final List<Crime> crimes = crimeService.findTopCrimes();
 		final List<Complaint> complaints = complaintService.findTopComplaints();
+		final List<News> news = newsService.findTopNews();
 		
 		final ModelAndView mav = new ModelAndView("dashboard");
 		mav.addObject("topCrimes", crimes);
@@ -57,6 +63,10 @@ public class NavigationController extends BaseController {
 		
 		mav.addObject("topComplaints", complaints);
 		log.debug("total complaints: {}", complaints.size());
+		
+		mav.addObject("topNews", news);
+		log.debug("total news: {}", news.size());
+		
 		return setSelectedMenu(mav);
 
 	}	

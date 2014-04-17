@@ -22,7 +22,7 @@ public abstract class BaseController {
 	@Autowired
 	UserService userService;
 
-	@Value("${domainPath}")
+	@Value("${baseUrl}")
 	public String DOMAIN_PATH;
 
 	public ModelAndView setSelectedMenu(final ModelAndView mav) {
@@ -35,6 +35,7 @@ public abstract class BaseController {
 		mav.addObject("homeActive", "");
 		mav.addObject("reportsActive", "");
 		mav.addObject("feedbackActive", "");
+		mav.addObject("newsActive", "");
 		
 		if(request.getRequestURI().contains("complaint")) {
 			mav.addObject("complaintActive", "active");
@@ -50,6 +51,8 @@ public abstract class BaseController {
 			mav.addObject("reportsActive", "active");
 		} else if(request.getRequestURI().contains("feedback")) {
 			mav.addObject("feedbackActive", "active");			
+		} else if(request.getRequestURI().contains("news")) {
+			mav.addObject("newsActive", "active");			
 		} else if(request.getRequestURI().contains("crime")) {
 			mav.addObject("crimeActive", "active");
 		} 

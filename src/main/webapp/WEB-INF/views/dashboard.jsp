@@ -20,6 +20,20 @@
 	</form>
 	<hr/>
 	<div class="row">
+		<h1>Latest News</h1>
+		<br/>
+		<c:forEach items="${topNews}" var="c">
+			<div class="col-sm-3">
+				<h2>${c.title }</h2>
+				<%-- <p>${c.description}</p> --%>
+			    <span class="label label-primary">&nbsp;&nbsp;Posted ${c.newsDate}&nbsp;&nbsp;</span>
+			    <br/>
+			    <a id="btnComplaintDetails" href="${pageContext.request.contextPath}/news/view/${c.newsId}">Details</a>
+			</div>
+		</c:forEach>
+	</div>	
+	<hr/>
+	<div class="row">
 		<h1>Latest Complaints</h1>
 		<br/>
 		<c:forEach items="${topComplaints}" var="c">
